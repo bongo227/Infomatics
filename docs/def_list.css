@@ -1,0 +1,19 @@
+dl {
+    margin-left: 20px;
+}
+
+dl > dt {
+    font-weight: bold;
+}
+
+dl > dd {
+    opacity: 0.8;
+    font-size: 14px;
+    margin: 0 0 10px 0 !important;
+    padding-bottom: 10px;
+    border-bottom: 1px solid grey;
+}
+
+dl > dd:last-child {
+    border-bottom: none;
+}

@@ -8,19 +8,19 @@ This doesnt increase the power of NFA's, but it has some convenience.
 
 ### Concatination
 
-$L_1 . L_2 = \{xy | x \in L_1, y \in L_2\}$
+$L_1 . L_2 = \\{xy \mid x \in L_1, y \in L_2\\}$
 
 $L_1 . L_2$ is the concatination of two languages, for example $\{a, b\}$, $\{c, d\}$ becomes $\{ac, ad, bc, bd\}$
 
 Its obvious the concatination is closed, since we can add an $\epsilon$ transition between the start and accepting states of the machines for languages $L_1$ and $L_2$
-
+s
 ### Kleene star
 
 $L* = {\epsilon} \cup L \cup L.L \cup ...$
 
 $L*$ Is the langauge of 0 or more strings of $L$
 
-Again kleene start is also closed. By introducing a new start state with an $\epsilon$ transition to the machine for $L$ and add a $\epsilon$ transition back from the machine to the new accepting state. This allows the machine for $L$ to run for any amount of times.
+Again kleene start is also closed. By introducing a new start state (which is also an accepting state) with an $\epsilon$ transition to the machine for $L$ and add $\epsilon$ transitions back from the machine to the new start/accepting state. This allows the machine for $L$ to run for any amount of times.
 
 ## Regular Expressions
 
@@ -55,4 +55,4 @@ Regular expressions can be manipulated with kleene algebra without changing the 
 - $a + (b + c) = (a + b) + c$
 - $a + \emptyset$
 - ...
-- $\epsilon + aa* = \epsilon + a * a = a*$
+- $\epsilon + aa\* = \epsilon + a \* a = a\*$

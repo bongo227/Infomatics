@@ -297,4 +297,172 @@ Fallacy of denying the hypothesis
 (8)\quad & P(a) \land ¬B(a) && \text{Conjunction (6, 7)} \\
 (9)\quad & \exists x (P(x) \land ¬B(x)) && \text{Existential generalization (8)}
 \end{align}
-$$ 
+$$
+
+## Set
+
+An unordered collection of elements
+
+### Set Operations
+
+| Name | Example |
+| :--- | --- |
+| Equality | <div style="width: 130px;">$\{1, 2, 3\} = \{3, 1, 2\}$</div> |
+| Membership | $3 \in \{1, 2, 3\}$ |
+| Non-Membership | $5 \notin \{1, 2, 3\}$ |
+| Empty Set | $\emptyset = \{\}$ |
+| Union | $A \cup B$ |
+| Intersection | $A \cap B$ |
+| Diffrence | $A - B$ |
+| Complement | $\bar{A}$ |
+| Subset | $A \subseteq B$ |
+| Superset | $A \supseteq B$ |
+| Power Set | $P(A)$ (set of all subsets) |
+| Cardinality | $\vert A \vert$ |
+| Cartesian Product | $A \times B$ |
+
+### Common Sets
+
+| Name | Symbol | Description |
+| :--- | --- | --- |
+| Booleans | $\mathbb{B}$ | $\{true, false\}$ |
+| Natural numbers | $\mathbb{N}$ | $\{0, 1, 2, ...\}$ |
+| Integer | $\mathbb{Z}$ | $\{..., -2, -1, 0, 1, 2, ...\}$ |
+| Positive Integers | $\mathbb{Z}^+$ | $\\{z \in Z \mid z > 0\\}$ |
+| Real Numbers | $\mathbb{R}$ |  |
+| Rational | $\mathbb{Q}$ | $\\{\frac{a}{b} \mid a \in \mathbb{Z}, b \in \mathbb{Z}^+\\}$ |
+| Complex Numbers | $\mathbb{C}$ |  |
+
+### Set Identitys
+
+- $A \cup A = A$
+- $A \cap A = A$
+- $\bar{\bar{A}} = A$
+- $A \cup B = B \cup A$
+- $A \cap B = B \cap A$
+- $A \cup (B \cap C) = (A \cap B) \cup (A \cap C)$
+- $\bar{A \cap B} = \bar{A} \cup \bar{B}$
+- $\bar{A \cup B} = \bar{A} \cap \bar{B}$
+- $A \cup (A \cap B) = A$
+- $A \cap (A \cup B) = A$
+
+## Functions
+
+### Syntax
+
+A function $f$ from set $A$ to set $B$ assigns an element from $A$ to $B$, this is written as $f: A \rightarrow B$.
+
+Examples:
+
+- Ceil - $\lceil \cdot \rceil : \mathbb{R} \rightarrow \mathbb{Z}$
+- Floor - $\lfloor \cdot \rfloor : \mathbb{R} \rightarrow \mathbb{Z}$
+- Identity - $\iota_A : A \rightarrow A$
+- Factorial - $! : \mathbb{N} \rightarrow \mathbb{N}$
+
+### Injective
+
+$f : A \rightarrow B$ iff $\forall a, c \in A (\text{if } f(a) = f(c) \text{ then } a = c)$
+
+For every element in A their is an element in B which maps to it.
+
+Examples:
+
+- Identity function
+- $\sqrt{\cdot}$
+
+### Surjective
+
+$f: A \rightarrow B$ is surjective iff $\forall b \in B \; \exists a \in A (f(a) = b)$
+
+For every element in B, their is an element in A which is mapped onto it.
+
+Examples:
+
+- Identity function
+- $\mathbb{Z} \mod m$ for $m > 1$
+
+### One-to-one correspondence or bijection
+
+$f: A \rightarrow B$ is a bijection iff it is both injective and bijective
+
+Every element in the domain is mapped to a value in the range and visa-versa.
+
+Examples
+
+- Identity function
+- $\sqrt{x} : \mathbb{R}^+ \rightarrow \mathbb{R}^+$
+
+### Composition
+
+Let $f : B \rightarrow C$ and $g: A \rightarrow B$. The composition function $f \circ g : A \rightarrow C$ is $(f \circ g)(a) = f(g(a))$
+
+- The composition of two functions is a function
+- The composition of two injective functions is a injective function
+- The composition of two surjective functions is a surjective function
+- The composition of two bijections is a bijection
+
+### Inverse
+
+If $f: A \rightarrow B$ is a bijection, then the inverse of $f$, written $f^{-1}:B\rightarrow A$ is $f^{-1}(b) = a$ iff $f(a) = b$
+
+- Inverse of the identity function, is the identity function
+- Inverse of $\sqrt{x} : \mathbb{R}^+ \rightarrow \mathbb{R}^+$ is $x^2 : \mathbb{R}^+ \rightarrow \mathbb{R}^+$ 
+- $f^{-1} \circ f$ and $f \circ f^{-1}$ is the identity function
+
+## Relations
+
+A binary relation $R$ on sets $A$ and $B$ is a subset $R \subseteq A \times B$
+
+- Often written as $R\;b$ for $(a, b) \in R$
+- A function $f$ is a restricted relation where $$
+\forall a \in A \exists b \in B \; (((a, b) \in f) \land \forall c \in B \; ((a, c) \in f \rightarrow c = b))
+$$
+    - For all a in $A$ their exsists a $b$ in $B$
+    - where (a, b) in relation $f$
+    - and $b$ is unique  
+- Given sets $A_1, ..., A_n$ a subset $R \subseteq A_1 \times ... \times A_n$ is an $n$-ary relation.
+
+$R \subseteq A \times B$ where $A$ is students and $B$ is courses, $(\text{Ben}, \text{DMMR}) \in R$
+
+### Operations
+
+Relations are sets, so we can use the same operations, i.e. $R \cup S$ or $R \cap S$
+
+### Realtion composition
+
+Let $R \subseteq B \times C$ and $S \subseteq A \times B$. The composition relation $(R \circ S) \subseteq A \times C$ is $\{(a, c) \;|\; \exists b (a, b) \in S \land (b, c) \in R\}$
+
+The expression specifys the relations where $R$ and $S$ have a common $B$, thus $R \circ S \subseteq A \times C$
+
+Closure $R$ is a relation on $A$:
+
+- $R^0$ is the identity relation $\iota_A$
+- $R^{n+1} = R^n \circ R$
+- $R^* = \bigcup_{n \geq 0}R^n$
+
+### Graph reachability
+
+### Properties
+
+- Reflexive iff $\forall x \in A (x, x) \in R$.
+- $\leq$, $=$ and $|$ are reflexive, but $<$ is not.
+- Symetic iff $\forall x, y \in A ((x, y) \in R \rightarrow (y, x) \in R)$.
+- $=$ is symmetic, but $\leq$, $<$ and $|$ are not.
+- antisymetic iff $\forall x, y \in A (((x, y) \in R \land (y, x) \in R) \rightarrow x = y)$.
+- $\leq$, $=$, $<$ are antisymmetic but $|$ is not.
+- transitive iff $\forall x, y, z \in A (((x, y) \in R \land (y, z) \in R \rightarrow (x, z) \in R)$.
+- $\leq$, $=$, $<$ and $|$ are transitive.
+
+A relation $R$ is an equivalance realtion iff it is reflexive, symetric and transitive.
+
+### Equivalnce classes
+
+Let $R$ be an equivalence realtion on a set $A$ and $a \in A$ let $[a]_R = \{s \;|\; (a, s) \in R\}$ be the equivalence class of a w.r.t $R$.
+
+If $b \in [a]_R$ the $b$ is called a representative of the equivalance class.
+
+Let $R$ be an equivalnce realtion on $A$ amd $a, b \in A$. Then following statements are equivalnet
+
+- $a R b$
+- $[a]_R = [b]_R$
+- $[a]_R \cap [b]_R \ne \emptyset$

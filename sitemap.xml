@@ -4,7 +4,7 @@
     
     <url>
      <loc>/</loc>
-     <lastmod>2017-09-28</lastmod>
+     <lastmod>2017-09-29</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
@@ -12,7 +12,31 @@
     
     <url>
      <loc>/Discrete-Mathmatics-and-Mathmatical-Reasoning/</loc>
-     <lastmod>2017-09-28</lastmod>
+     <lastmod>2017-09-29</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    
+
+    
+    <url>
+     <loc>/Introduction-to-Computer-Systems/</loc>
+     <lastmod>2017-09-29</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    
+
+    
+    <url>
+     <loc>/Introduction-to-Software-Engineering/</loc>
+     <lastmod>2017-09-29</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    
+
+    
+    <url>
+     <loc>/Processing-Formal-and-Natural-Languages/</loc>
+     <lastmod>2017-09-29</lastmod>
      <changefreq>daily</changefreq>
     </url>
     

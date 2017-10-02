@@ -31,7 +31,7 @@ Main success scenario
 4. Email confirmation
 ```
 
-Extensions - variations of the maun success scenario
+Extensions - variations of the main success scenario
 
 ```
 6a. Credit card auth fails

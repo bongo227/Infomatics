@@ -1,10 +1,7 @@
 site_name: My Docs
 theme: material
 markdown_extensions:
-    - math
+    - latexmd
     - def_list
-extra_javascript:
-    - 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_HTML'
-    - 'mathjaxhelper.js'
 extra_css:
     - 'def_list.css'

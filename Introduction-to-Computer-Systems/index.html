@@ -226,6 +226,47 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#mips" title="MIPS" class="md-nav__link">
+    MIPS
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#instruction-set" title="Instruction set" class="md-nav__link">
+    Instruction set
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#arithmatica-and-logical-operations" title="Arithmatica and Logical Operations" class="md-nav__link">
+    Arithmatica and Logical Operations
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#register" title="Register" class="md-nav__link">
+    Register
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mips-instruction" title="MIPS instruction" class="md-nav__link">
+    MIPS instruction
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
       
       
     </ul>
@@ -318,6 +359,47 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#mips" title="MIPS" class="md-nav__link">
+    MIPS
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#instruction-set" title="Instruction set" class="md-nav__link">
+    Instruction set
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#arithmatica-and-logical-operations" title="Arithmatica and Logical Operations" class="md-nav__link">
+    Arithmatica and Logical Operations
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#register" title="Register" class="md-nav__link">
+    Register
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mips-instruction" title="MIPS instruction" class="md-nav__link">
+    MIPS instruction
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
       
       
     </ul>
@@ -335,7 +417,11 @@
                 
                   <h1>Introduction to Computer Systems</h1>
                 
-                <h2 id="floating-point">Floating point</h2>
+                <style scoped>
+.latex-box.math-false {text-align: center;}
+.math-true {vertical-align: middle;}
+</style>
+<h2 id="floating-point">Floating point</h2>
 <dl>
 <dt>Mantissa/significand</dt>
 <dd>Fractional part</dd>
@@ -397,6 +483,87 @@ $s \times m \times 2 ^ {exp - 127}$</p>
 <td>255</td>
 <td>non-zero</td>
 <td>NaN (not a number)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="mips">MIPS</h2>
+<dl>
+<dt>ISA</dt>
+<dd>Instruction set architecture - The interface between the hardware and the software</dd>
+<dt>MIPS</dt>
+<dd>A real world ISA used by many diffrent processors since the 80s</dd>
+</dl>
+<h3 id="instruction-set">Instruction set</h3>
+<dl>
+<dt>Assemble Language</dt>
+<dd>Symbolic representation of machine instructions.</dd>
+</dl>
+<p>Machine code are instructions stored as binary values, assembly language is a one-to-one mapping that allow human programmers to reason about programs.</p>
+<p>High level:</p>
+<pre><code>a[0] = b[0] + 10
+</code></pre>
+
+<p>MIPS:</p>
+<pre><code>lw r4, 0(r2)    # Load word - Get the value fo b[0] from memory and store in r4
+add r5,r4,10    # Add - Compute b[0]+10 and store in r5
+sw r5,0(r1)     # Save word - Store r5 into a[0]
+</code></pre>
+
+<p>MIPS does not allow accessing and operating on data at the same time</p>
+<h3 id="arithmatica-and-logical-operations">Arithmatica and Logical Operations</h3>
+<ul>
+<li><code>add a, b, c</code> $a = b + c$</li>
+<li><code>sub a, b, c</code> $a = b - c$</li>
+<li><code>sll a, b, c</code> $a = b &lt;&lt; c$</li>
+<li><code>srl a, b, c</code> $a = b &gt;&gt; c (logical)$</li>
+<li><code>sra a, b, c</code> $a = b &gt;&gt; c (arithmatic)$</li>
+</ul>
+<h3 id="register">Register</h3>
+<dl>
+<dt>Register</dt>
+<dd>Storage locations inside the processor that holds program variables and control state</dd>
+</dl>
+<h3 id="mips-instruction">MIPS instruction</h3>
+<p>Each assemby instruction translates into 1 machine instruction as shown bellow:</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Main opcode</th>
+<th>1<sup>st</sup> operand</th>
+<th>2<sup>nd</sup> operand</th>
+<th>result</th>
+<th>shift</th>
+<th>sub-function opcode</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td>op</td>
+<td>rs</td>
+<td>rt</td>
+<td>rd</td>
+<td>shamt</td>
+<td>func</td>
+</tr>
+<tr>
+<td><code>add $s1, $s2, $s3</code></td>
+<td>0</td>
+<td>18</td>
+<td>19</td>
+<td>17</td>
+<td>0</td>
+<td>$32_{10}$</td>
+</tr>
+<tr>
+<td><code>sub $t0, $s2, $t1</code></td>
+<td>0</td>
+<td>18</td>
+<td>9</td>
+<td>8</td>
+<td>0</td>
+<td>$34_{10}$</td>
 </tr>
 </tbody>
 </table>
@@ -473,10 +640,6 @@ $s \times m \times 2 ^ {exp - 127}$</p>
       
       
       <script>app.initialize({url:{base:".."}})</script>
-      
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_HTML"></script>
-      
-        <script src="../mathjaxhelper.js"></script>
       
     
     

@@ -472,3 +472,80 @@ Let £R£ be an equivalnce realtion on £A£ amd £a, b \in A£. Then following 
 - £a R b£
 - £[a]_R = [b]_R£
 - £[a]_R \cap [b]_R \ne \emptyset£
+
+### Partitions of a Set
+
+A partition of set £A£ is a collection of disjoint, nonempty subsets that have £A£ as their union, in other words the collection of subsets £A_i \subseteq A£ with £i \in I£ (where £I£ is the index set) forms a partition of £A£ iff
+
+- £A_i \ne \emptyset£ for all £i \in I£
+- £A_i \cap A_j = \emptyset£ for all £i \ne j \in I£
+- £\bigcup_{i\inI} A_i = A£
+
+#### TODO: finish this
+
+## Sequences
+
+Sequence
+:   Ordered list of elements
+
+£f : \mathbb{Z}^+ \rightarrow \mathbb{Q}£ is £f(n) = \frac{1}{n}£ defines the sequence £1, \frac{1}{2}, \frac{1}{3}, \frac{1}{4}£
+
+Geometric progressions
+:   A sequence in the form £a, ar, ar^2, ar^3, ...£
+
+Arithmetic progressions
+:   A sequence in the form £a, a + d, a + 2d, a + 3d, ...£
+
+### Recurrence relations
+
+Recurrence relations
+:   A recurance relations for £\{a_n\}_{n \in \mathbb{N}}£ is an equation that expreses £a_n£ in terms of one or more elements of £a_0, a_1, a_{n-1}£
+
+- After 1 month a pair of rabbits is placed on an island
+- After every 2 months, each pair of rabbits produces a new pait of rabbits 
+
+The realtion is:
+%
+\begin{cases}
+f(a) & 1 \\
+f(2) & 2 \\
+f(n) & f(n-1) + f(n-2) for n > 2
+\end{cases}
+%
+
+Solving a recurrence relations if finding the nth term, one way of solving is an inteative aproach
+
+> Supose a person deposits $1000 in savings with 3 percent intrest, how much is the account worth after 20 years
+> - Let £P_n£ denote the amount after £n£ years
+> - £P_n = 1.03 \times P_{n-1}£
+> - £P_0 = 1000£
+> - £P_1 = 1.03 P_0, ... P_n = (1.03)^n P_0£
+
+### Common sequences
+
+| nth term | first 10 terms |
+| £n^2£ ||
+| £n^3£ ||
+| £n^4£ ||
+| £2^n£ ||
+| £3^n£ ||
+| £n!£ ||
+| £fn£ ||
+
+## Sumations
+
+Given a sequence £\{a_n\}£, the sum of the terms is £a_m + a_{m+1} + ... + a_l£ or £\sum_{j=m}^{l}{a_j}£
+
+### Usefull sumations
+
+## Product
+
+Given a sequence £\{a_n\}£, the product of the terms i s£a_m \times a_{m+1} \times ... \times a_l£ or £\prod{a_ j}_ {j=m}^{l}£, or more generally for a finite index set £S£, £\prod_{j \in S}{a_j}£
+
+## Cartinality
+
+- Two sets have the same cardinality £|X| = |Y|£ iff there is an bijection £f : X \rightarrow Y£
+- £|X| \leq |Y|£ iff there is an injection £f : X \rightarrow Y£
+- Unlike finite sets £A \subset B£ and £|A| = |B|£
+
+#### TODO: example

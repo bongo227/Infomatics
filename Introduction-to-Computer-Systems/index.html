@@ -242,23 +242,91 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#arithmatica-and-logical-operations" title="Arithmatica and Logical Operations" class="md-nav__link">
-    Arithmatica and Logical Operations
+  <a href="#arithmatic-and-logical-operations" title="Arithmatic and Logical Operations" class="md-nav__link">
+    Arithmatic and Logical Operations
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#register" title="Register" class="md-nav__link">
-    Register
+  <a href="#registers" title="Registers" class="md-nav__link">
+    Registers
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#mips-instruction" title="MIPS instruction" class="md-nav__link">
-    MIPS instruction
+  <a href="#endinness" title="Endinness" class="md-nav__link">
+    Endinness
   </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mips-instruction-format" title="MIPS instruction format" class="md-nav__link">
+    MIPS instruction format
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mips-examples" title="MIPS examples" class="md-nav__link">
+    MIPS examples
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#swap" title="Swap" class="md-nav__link">
+    Swap
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#if" title="If" class="md-nav__link">
+    If
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#loop" title="Loop" class="md-nav__link">
+    Loop
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#method-calls" title="Method calls" class="md-nav__link">
+    Method calls
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#convention" title="Convention" class="md-nav__link">
+    Convention
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nested-calls" title="Nested calls" class="md-nav__link">
+    Nested calls
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
         
@@ -375,23 +443,91 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#arithmatica-and-logical-operations" title="Arithmatica and Logical Operations" class="md-nav__link">
-    Arithmatica and Logical Operations
+  <a href="#arithmatic-and-logical-operations" title="Arithmatic and Logical Operations" class="md-nav__link">
+    Arithmatic and Logical Operations
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#register" title="Register" class="md-nav__link">
-    Register
+  <a href="#registers" title="Registers" class="md-nav__link">
+    Registers
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#mips-instruction" title="MIPS instruction" class="md-nav__link">
-    MIPS instruction
+  <a href="#endinness" title="Endinness" class="md-nav__link">
+    Endinness
   </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mips-instruction-format" title="MIPS instruction format" class="md-nav__link">
+    MIPS instruction format
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mips-examples" title="MIPS examples" class="md-nav__link">
+    MIPS examples
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#swap" title="Swap" class="md-nav__link">
+    Swap
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#if" title="If" class="md-nav__link">
+    If
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#loop" title="Loop" class="md-nav__link">
+    Loop
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#method-calls" title="Method calls" class="md-nav__link">
+    Method calls
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#convention" title="Convention" class="md-nav__link">
+    Convention
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nested-calls" title="Nested calls" class="md-nav__link">
+    Nested calls
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
         
@@ -510,63 +646,124 @@ sw r5,0(r1)     # Save word - Store r5 into a[0]
 </code></pre>
 
 <p>MIPS does not allow accessing and operating on data at the same time</p>
-<h3 id="arithmatica-and-logical-operations">Arithmatica and Logical Operations</h3>
+<h3 id="arithmatic-and-logical-operations">Arithmatic and Logical Operations</h3>
 <ul>
-<li><code>add a, b, c</code> $a = b + c$</li>
-<li><code>sub a, b, c</code> $a = b - c$</li>
-<li><code>sll a, b, c</code> $a = b &lt;&lt; c$</li>
-<li><code>srl a, b, c</code> $a = b &gt;&gt; c (logical)$</li>
-<li><code>sra a, b, c</code> $a = b &gt;&gt; c (arithmatic)$</li>
+<li><code>add a, b, c</code> <img class='math-true' alt='02e320711bb642c3025216ef72c10a26' id='02e320711bb642c3025216ef72c10a26_4' src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADoAAAANBAMAAAAK6mAOAAAAMFBMVEX///8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAv3aB7AAAAD3RSTlMARHarZs3dMu8QVLuZiSJHerZ5AAAACXBIWXMAAA7EAAAOxAGVKw4bAAAAmUlEQVQY02NgQAHLHBjwANYCfLL8EGoBdllpCHUALiCkjGSXtq8AXJb9lgMDowErUIDHGAiA9CaGBrisNEMfA1sBG5LJHzg/wGUTGR4wVDBMQ0jyJTAC9R42TjY2ZGAHmbKaYQ0n3GRGA94LML1cAUCimiFEEqHXYOoEmCxfAsNKBt4ltUi+U7mJ8JHLkgfYvX0AX4gxwEIAAHzkIRlmDxhYAAAAAElFTkSuQmCC'></li>
+<li><code>sub a, b, c</code> <img class='math-true' alt='3f715c658996c2e7660097ea263fbf2d' id='3f715c658996c2e7660097ea263fbf2d_5' src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADoAAAALBAMAAADcs4MTAAAAMFBMVEX///8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAv3aB7AAAAD3RSTlMARHarZs3dMu8QVLuZiSJHerZ5AAAACXBIWXMAAA7EAAAOxAGVKw4bAAAAiElEQVQY02NgQAHLHBjwANYCfLL8+CQZpNEFhJSR7NL2FYCz2W85MDAasAIFeIyBAEhvYmhAMqePga2ADcmgD5wf4OxEhgcMFQzTEJJ8CYxAvT5nzpw5wMAOMmU1wxpOuMmMBrwXYCq5AoBENUOIJEKvwdQJCHMYVjLwLqldgDBa5SaC7bLkAQCE7BvsKQnEeQAAAABJRU5ErkJggg=='></li>
+<li><code>sll a, b, c</code> <img class='math-true' alt='12a27824bae471b7e04a92c4bb60ee5c' id='12a27824bae471b7e04a92c4bb60ee5c_6' src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEgAAAALBAMAAAAuD9a2AAAAMFBMVEX///8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAv3aB7AAAAD3RSTlMARHarZs3dMu8QVLuZiSJHerZ5AAAACXBIWXMAAA7EAAAOxAGVKw4bAAAAmklEQVQY02NgQAHLHBgIA9YCIhTxwxiLQQSXAVZF0jA1C0BqrODiQspI7tD2FUBXw37LgYHRgBUozmMMBEB6E0MDujnSDH0MbAVsSNZ94PzAwMALdsplqFAiwwOGCoZpCDV8CYzoJrGDBFYzrOGEW8dowHsBzU1cAUCimiFEEmGSwdQJaL7jS2BYycC7pHYBwj6Vmxjh5LLkAQBFWSRwad56EAAAAABJRU5ErkJggg=='></li>
+<li><code>srl a, b, c</code> <img class='math-true' alt='fcce61d368fd17252f514d1f266166b7' id='fcce61d368fd17252f514d1f266166b7_7' src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEgAAAALBAMAAAAuD9a2AAAAMFBMVEX///8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAv3aB7AAAAD3RSTlMARHarZs3dMu8QVLuZiSJHerZ5AAAACXBIWXMAAA7EAAAOxAGVKw4bAAAAm0lEQVQY02NgQAHLHBgIA9YCIhTxgwiWmyDSdwIuRdJg8g1IFd9ZJFVCykju0PYVQFfFfsuBgdGAFSjOYwwEQHoTQwO6WdIMfQxsBWxI1n3g/ABhrAARXCAdiQwPGCoYpiHU8CUwopvEDhJYzbCGE24dowHvBTTbuAKARDVDiCTCJIOpE9DczZfAsJKBd0ntAoR9KjcxwsllyQMAm5wwQsvtQCMAAAAASUVORK5CYII='> (logical)</li>
+<li><code>sra a, b, c</code> <img class='math-true' alt='fcce61d368fd17252f514d1f266166b7' id='fcce61d368fd17252f514d1f266166b7_8' src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEgAAAALBAMAAAAuD9a2AAAAMFBMVEX///8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAv3aB7AAAAD3RSTlMARHarZs3dMu8QVLuZiSJHerZ5AAAACXBIWXMAAA7EAAAOxAGVKw4bAAAAm0lEQVQY02NgQAHLHBgIA9YCIhTxgwiWmyDSdwIuRdJg8g1IFd9ZJFVCykju0PYVQFfFfsuBgdGAFSjOYwwEQHoTQwO6WdIMfQxsBWxI1n3g/ABhrAARXCAdiQwPGCoYpiHU8CUwopvEDhJYzbCGE24dowHvBTTbuAKARDVDiCTCJIOpE9DczZfAsJKBd0ntAoR9KjcxwsllyQMAm5wwQsvtQCMAAAAASUVORK5CYII='> (arithmatic)</li>
 </ul>
-<h3 id="register">Register</h3>
+<h3 id="registers">Registers</h3>
 <dl>
 <dt>Register</dt>
 <dd>Storage locations inside the processor that holds program variables and control state</dd>
 </dl>
-<h3 id="mips-instruction">MIPS instruction</h3>
-<p>Each assemby instruction translates into 1 machine instruction as shown bellow:</p>
-<table>
-<thead>
-<tr>
-<th></th>
-<th>Main opcode</th>
-<th>1<sup>st</sup> operand</th>
-<th>2<sup>nd</sup> operand</th>
-<th>result</th>
-<th>shift</th>
-<th>sub-function opcode</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-<td>op</td>
-<td>rs</td>
-<td>rt</td>
-<td>rd</td>
-<td>shamt</td>
-<td>func</td>
-</tr>
-<tr>
-<td><code>add $s1, $s2, $s3</code></td>
-<td>0</td>
-<td>18</td>
-<td>19</td>
-<td>17</td>
-<td>0</td>
-<td>$32_{10}$</td>
-</tr>
-<tr>
-<td><code>sub $t0, $s2, $t1</code></td>
-<td>0</td>
-<td>18</td>
-<td>9</td>
-<td>8</td>
-<td>0</td>
-<td>$34_{10}$</td>
-</tr>
-</tbody>
-</table>
+<ul>
+<li>Some registers are special purpose<ul>
+<li>Register <code>$zero</code> is always zero for example</li>
+<li><code>$pc</code> is the program counter, the adress of the next instruction</li>
+<li><code>$ra</code> stores the return adress to return to after executing a method</li>
+</ul>
+</li>
+<li>Most are for general use<ul>
+<li><code>$s0-$s7</code> are variables</li>
+<li><code>$t0-$t9</code> are tempory variables</li>
+</ul>
+</li>
+</ul>
+<h3 id="endinness">Endinness</h3>
+<dl>
+<dt>Endinness</dt>
+<dd>The sequential order in which bytes are arranged in memory</dd>
+<dt>Big-endian</dt>
+<dd>Bytes orders by most significant bit</dd>
+<dt>Little-endian</dt>
+<dd>Bytes ordered by least significant bit</dd>
+</dl>
+<h3 id="mips-instruction-format">MIPS instruction format</h3>
+<p>Each assembly instruction translates into 1 machine instruction. Their are 3 formts of instructions</p>
+<ul>
+<li>
+<p>R-format (e.g. <code>add</code>, <code>sub</code>, <code>and</code>, <code>or</code> ...) <div class='latex-box math-false'><img class='' alt='12c8ab366120af5c253fead499d1ed81' id='12c8ab366120af5c253fead499d1ed81_1' src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAAAmCAMAAAAFgAxEAAAAM1BMVEX///8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADxgEwMAAAAEHRSTlMAEIlUdkTNqzJmu90ime9eeyE4EwAAAAlwSFlzAAAOxAAADsQBlSsOGwAAAtdJREFUaN7tmIty4yAMRQEJzNPr///alWxnO10kSL1tZifjzKSJe+GiYyElxGzv/jCbmTy2nxHNfOVvmfhyQmvfnNCXpsq+wZcJE+ZXE+JkZtIJjWv6QrJvzcbZ1xJW9w+ESSdUfKG9epfa5WcINV8m3CvbPkVoHaA3UFpKLQp+UDCFatDDoomQA1loM61L0ETCwzM1gKVSQfpEe88XR/+t9K9oFF+/BPxVFhNDfgwnjJbAy4SBnuTGtWtXqeVhMGh5JaeJBuV7fYiF1hcJT89U7J7H1e/JScHuT4ZHPYdIMuRzOF3TKr6IhCkff5BjyCgFko98VKOJKmHe+yi/kwhPT46AcapHF85Leo15SJgehMds4FWiSOiWfa0jBvlWu+NObIsqaoTugSkSnp6PWBvSvvu45PfPEB6vGNQ6fCKHvAxtKBvqgBC0mZwPmfD0PGOMlAUfbP2LEJ4jhKISWqoCk/1+q6tchxyn45pRCWlJlXCvw0UiPD3PGP3KRRU/ESq+TOg56x+EptAWTXKnqS454MqlXiqVmi+FMosImDSRCMSed4jUrFNbk3ADdk8f1hQz6c5BJJ/zsuYNFd8YVrp11IHTCn9mUy9Ncfh5iO3dv3m/PSHtKLhPTzfhf0Z4/4rxbruUPhRR90O00V0Se3UQaD92PrEPXCakQzN/tdf83LaVekns1QFhP3Y6UQhcJsz0SVEHOaxXxV4d5bDWr+5SIXCR0G516IeXxV4dEX65DqXARcK40fHaDyAAXLwk9uqIsBs7mygFLhLC5o8jgOLHHqu9IvbqgLAfOyOUAhcJ/Ua+y7jllXRV/KxOmv7nsdPfYYXAlV3KB6BF9eNVs7si9uqAsB8736V94HIvHecw8tbR0jQUBVUnFMZOC/jZHBo+Ag/qEPn4f0ns1XEv/WvsdKIQuPKdxmEb9NKasNVLYq8OCPux84l94Pfp6Sa8CW/C+4z/bY/fsoJQBWoYSG8AAAAASUVORK5CYII='></div></p>
+</li>
+<li>
+<p>I-format (e.g. <code>addi</code>, <code>lw</code>, <code>sw</code>, ...) <div class='latex-box math-false'><img class='' alt='4d903eab43a29ce1a9b97bd614efd88b' id='4d903eab43a29ce1a9b97bd614efd88b_2' src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALAAAAAmBAMAAACWpgwzAAAAMFBMVEX///8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAv3aB7AAAAD3RSTlMAEIlUdkTNqzJmu90ime+fec2yAAAACXBIWXMAAA7EAAAOxAGVKw4bAAACh0lEQVRIx+3VT2jTUBwH8G+aF0224GIv7iTRMnEgLLhB1SJ0cxPUFQLiLr20sIPghDIG6kEoHhREpFRXpFAI/rs62S5ihbLqwSHSgxfBynrYYbcK7qQwE8Py3tuSwGQVB+bwwuP19+GX73tNsN6hC23wVw8/bYcthlw9OwTv3wm4K7nFld7g6R/ChC4q5taOK5j9fU9uG14Mj6Li3lR9u7AwTRd7az6wcM+5HdgMR4fMxOdK3qtNnJsiF3MbsLhQqj8f8xZvN9J98Xo8745q7BCiD5ryVVwqaqcmTWdO4QyuE0toebUkMzwG3ev4LNFGmIwbSlbJijl3PKjdQRVNO4wVsUF0OHMPViyUScPdWBe2kBinUZwHeNgSM7LljiX0SHNI2fC7kYwNl9wfuXAkh4QNNymsQ3nhReGoPJwTLTnjjkcG43YbDvxJdmB7HtaxDlOY4mAxAC7be5BxYHlOyr7VjTK7ecJLPCOW2mLhPhxj4dNBcLcm2hnfREVaVi7XG4Yzp5u3WDTIjUrNq00vYHSosAFLr5PYS0/FxPzE6t3Vpe/uqPY/QvTk19krxuETM5gxnTl3ju0oOvMS6hicnv8nX5t/E961nya1P8nWkuFbLDzaqwfBSp7W+sFLWGHhyHqVhQd+1AJg8YJBa/3gJ6hxHX/gohivBUaxx6C1PrDwk4+R8BknEQLTWh9YXiuaHDx4lIXPHM8Hw7TWBxbXUGVhCfs0BjbRCoZprQ8sfcM0/7TdBe64vQqGaa1fFG1cY2EFXToDF/A4JAqv1u9UbOr4vsZ2LLfCOkZYx4jxGRN85E6FuhwCx0IyRiTFnQr14RcWfp8K+oNIA5OaV7vLX5v/4Y5/QX4BEDD0iMRvBpwAAAAASUVORK5CYII='></div></p>
+</li>
+<li>
+<p>J-format (<code>j</code>) <div class='latex-box math-false'><img class='' alt='a62a065d418b24dbfb6bedbb6369cdd7' id='a62a065d418b24dbfb6bedbb6369cdd7_3' src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFoAAAAmBAMAAAC2ZpGLAAAAMFBMVEX///8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAv3aB7AAAAD3RSTlMAEIlUdkTNqzJmu90ime+fec2yAAAACXBIWXMAAA7EAAAOxAGVKw4bAAABlklEQVQ4y8XUPUgCYRwG8Oe8E1PPOlpaorwOBCHoICFQhEMwSAhuiCiCcGhoLAmqTQpyKKikTARB6IPWqK2Gw9Ghbm1oaGiLsMFNsGu5e897M1z0HR9+/Hnu/Ti0ulmow76G8Pca6oNW2lKuk+aDbWm1kx5p00yG1MMRNfZazpo6uqa6l0X2oaDt5S94SWRvkoROY4erMO+m5oIYVOOY5YTPwOmYkEOCmO2toMTpuCI1vxBCCkzdpReMjNSuDcQM/UbqgHLwa9Z9amh65r/Z8iEWRw1zdo6SESRYSzN3uOYqvNWb1eVVFI4MrQN+gUWc0KjmZW63rFmns6W6pFzyUcHU1yYfLsKTtO+30YRy8u4gE6WdPF1zMnw0vXJPvVVzEbFXN7YHL40PKw7NT9xauU3X8OHQARwLZm7Tl9Acuga/YuakZpqU3s+aX2zSeg808irlK8eXzJzUbANPFJ2yclK7v5Fxaj5t5bYmdWw7tUewctueUGdPQqbOhkTp7S3un0i03nDNO/fkpdXKmnm//rH90F29nR8L/AhU2AgYqQAAAABJRU5ErkJggg=='></div></p>
+</li>
+</ul>
+<h3 id="mips-examples">MIPS examples</h3>
+<h4 id="swap">Swap</h4>
+<p>This function swaps two consecutive array elements </p>
+<pre><code class="mips"># Compute the adress of the array
+sll $t0, $a1 2      # reg $t0 = idx * 4
+add $t0, $a0, $t0   # reg $t0 = v + (idx * 4)
+                    # $t0 holds the address of array[idx]
+
+# Load the two values to be swapped
+lw $t1, 0($t0)      # reg $t0 = array[idx]
+lw $t1, 4($t0)      # reg $t0 = array[idx + 1]
+
+# Store the swapped values back in memory
+sw $t2, 0($t0)      # array[idx] = $t2
+sw $t1, 4($t0)      # array[idx+1] = $t0
+</code></pre>
+
+<h4 id="if">If</h4>
+<pre><code class="mips">beq $s1,$s2,label2      # if(s1 == s2) jump to label2
+stmnt1                  # else
+j label3 # skip stmnt2  # continue from label3
+label2: stmnt2          # body of if
+label3: stmnt3          # continue from if
+</code></pre>
+
+<h4 id="loop">Loop</h4>
+<pre><code class="mips">loop:
+    beq $s1,$zero,end               # $s1 holds count
+    ...                             # Body of loop                           
+    j loop                          # Jump back to start
+end:
+    ...
+</code></pre>
+
+<h3 id="method-calls">Method calls</h3>
+<p>To jump into a method use <code>jal label</code> (jump and link) which:</p>
+<ol>
+<li>Sets <code>$ra</code> to <code>$pc + 4</code> (the next instruction)</li>
+<li>Sets <code>$pc</code> to the adress of the label</li>
+</ol>
+<p>When returning user <code>jr $ra</code> (jump register) which:</p>
+<ol>
+<li>Sets <code>$pc</code> to the value of <code>$ra</code>, the adress we want to return to</li>
+</ol>
+<h4 id="convention">Convention</h4>
+<p>It is convention to use registers in a certain way</p>
+<ul>
+<li><code>$a0</code> - <code>$a4</code> as method parameters</li>
+<li><code>$r1</code> and <code>$r2</code> as return values</li>
+<li><code>$s0</code> - <code>$s7</code> are preserved across call boundrys</li>
+<li><code>$t0</code> - <code>$t9</code> are <em>not</em> preserved across call boundrys</li>
+</ul>
+<h4 id="nested-calls">Nested calls</h4>
+<p>If we have a nested call, we can store the return adress onto the stack allowing us to nest "infinitly" (or until the machine runs out of stack space)</p>
+<p>To push a word:</p>
+<ol>
+<li>Move the stack pointer down with <code>addi $sp, $sp, -4</code></li>
+<li>Save the return adress onto the stack <code>sw $ra 0($sp)</code></li>
+</ol>
+<p>To pop a word:</p>
+<ol>
+<li>Fetch return adress from the stack <code>lw $ra, 0($sp)</code></li>
+<li>Move stack pointer up with <code>addi $sp, $sp 4</code></li>
+</ol>
+<p>The stack is also used to:</p>
+<ul>
+<li>Save <code>$s</code> registers</li>
+<li>Pass and return values if their isnt enough registers</li>
+<li>Local variables inside a function (that dont fit into registers)</li>
+</ul>
                 
                   
                 
@@ -640,6 +837,8 @@ sw r5,0(r1)     # Save word - Store r5 into a[0]
       
       
       <script>app.initialize({url:{base:".."}})</script>
+      
+        <script src="../toc.js"></script>
       
     
     

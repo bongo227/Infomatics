@@ -606,3 +606,53 @@ If £A£ and £B£ are sets with £\lvert A \rvert \leq \lvert B \rvert£ and £
 >       - If £a \not\in B£ then £a \not\in f(a)£, by definition of £B£, £a \in B£ (contradiction)
 
 One consequence of cantors theorem is that their is an infinite hierarchy of sets of larger cardinality.
+
+## Induction
+
+Mathematical Induction
+:   To prove £P(n)£ is true for all positive integers, where £P(n)£ is a propositional function
+
+Basic Step
+:   Verifying £P(1)£ is true
+
+Inductive step
+:   Showing that the conditional £P(k) \rightarrow P(k+1)£ is true for all positive integers £k£
+
+> Prove that if £n£ is a positive integer £P(n) = \displaystyle\sum^n_{k=1}{k} = \dfrac{n(n+1)}{2}£
+>
+> - £P(1) = \dfrac{1(1+1)}{2} = 1£, thus £P(1) is true£
+> - Assuming £P(k)£ holds, then it must be shown that £P(k+1)£ holds %
+\begin{align*}
+P(k+1) &= \frac{(k+1)[(k+1)+1]}{2}\\
+&= \frac{(k+1)(k+2)}{2}
+\end{align*}
+%
+> - Thus if we can show £P(k) + (k+1) = P(k+1)£, then £P(k) \rightarrow P(k+1)£
+%
+\begin{align*}
+\frac{(k+1)(k+2)}{2} &= \frac{k(k+1)}{2} + (k+1) \\
+&= \frac{k(k+1)}{2} + \frac{2(k+1)}{2} \\\
+&= \frac{k(k+1) + 2(k+1)}{2} \\
+&= \frac{(k+1)(k+2)}{2}
+\end{align*}
+%
+
+### Strong induction
+
+Mathematical Strong Induction
+:   To prove £P(n)£ is true for all positive integers, where £P(n)£ is a propositional function
+
+Basic Step
+:   Verifying £P(1)£ is true
+
+Inductive step
+:   Showing that the conditional £(P(1) \land ... \land P(k)) \rightarrow P(k+1)£ is true for all positive integers £k£
+
+> Prove that if £n > 1£, then £n£ can be written as the product of primes
+>
+> - £P(2)£ is true since £2 = 2£ (£2£ is a prime itself).
+> - £P(k+1)£ is either a prime or a composite number
+>       - If it is prime, then itself is a product of primes
+>       - If it is composite, then £k+1£ is the product of two positive integers £a£ and £b£ that are £2 \leq a \leq b < (k+1)£.
+>           - Thus since both are less than £k+1£, by strong induction they can be rewritten as the product of primes
+>           - Thus £k+1£ can be written as the product of primes

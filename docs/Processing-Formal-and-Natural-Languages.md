@@ -112,7 +112,7 @@ This can be extended to search for mulitple strings in parralel with a more comp
 - Within XML we can enforce constraints on parts of the data.
 - For text fields on web froms, we can check if the input text is in the correct form.
 
-## Lexing
+### Lexing
 
 Even tough a higher level language is to complex to be regular, regular expressions can be used to identify the fundemental building blocks (tokens) of the language.
 
@@ -122,14 +122,14 @@ Lexical Analysis
 Lexical class
 :   The class of a token, for example `1000` would be an integer literal, `foobar` would be an identifier.
 
-### How lexers work
+#### How lexers work
 
 - Build NFA's for the lexical classes £L_1, ..., L_k£ (in order of priority)
 - Run the 'parrallel' automaton £N_1 \times ... \times N_k£ until it expires
 - The last point in which we were in an accepting state is the largest match, chose the smallest £i£ such that were in an accepting state of £N_i£. Chose class £L_i£ as the lexical class for £x£ which is the highest priorty.
 - Perform the specified action for the class £L_i£
 
-## Verification
+### Verification
 
 Regulare langauge theory can help verify desirable properites:
 
@@ -137,7 +137,7 @@ Regulare langauge theory can help verify desirable properites:
 - Liveness, i.e. _good things do happen_
 - Fierness, i.e. _things good for some processes dont cause to much badness to others_
 
-### Example
+#### Example
 
 Suppose we have two processes £P_0, P_1£ that have use of a shared resource, but must not be given access at the same time.
 
@@ -172,3 +172,55 @@ Now machine £M£ with 200 states can be built.
 Now we can verify
 - Mutual exclusion: £P_0£ and £P_1£ can never access simulaneously.
 - Progress
+
+## The Pumping Lemma
+
+### Loops in DFA's
+A machine £M£ with states £k£ will always have a loop since we can process strings £y£ where £\lvert y \rvert \geq k£, thus we visit some state twice. Thus any string £y£ can be decomposed into:
+- £u£, the prefix of £y£ that leads to the first visit of the repeated state £q£
+- £v£, the loop which goes from £q£ to £q£
+- £w£, whatever is left of £y£ after £uv£
+
+### Lemma
+
+Suppose £L£ is a regular language, then £L£ has the following property £P£:
+
+Their exists £k \geq 0£ such that, for all strings £x, y, z£ with £xyz \in L£ and £\lvert y \rvert \geq k£, there exist strings £u, v, w£ such that £y = uvw£, £v \ne \epsilon£, and for every £i \geq 0£ we have £xuv^i wz \in L£ 
+
+### Contrapositive
+
+To prove a language is not reqular, we take the contrapositive of the pumping lemma £\neg P£:
+
+For all £k \geq 0£, there exist strings £x, y, z£ with £xyz \in L£ and £\lvert y \rvert \geq k£ such that, for every decomposition of £y£ as £y = uvw£ where £v \ne \epsilon£, their is some £i \geq 0£ which £xuv^i wz \not\in L£
+
+### Using the pumping lemma
+
+1. Your argument must work for all £k \geq 0£.
+2. Choose strings £x,y, z£ (which might depend on £k£) to satisfy £xyz \in L£ and £\lvert y \rvert \geq k£. Additionaly £y£ should "disallow pumping" (number of loops depend on language).
+3. Your argument must work for all decompositions of £y£ as £uvw£ with £v \ne \epsilon£.
+4. Choose the number £i (\ne 1)£ such that £xuv^i wz \not\in L£, here £i£ might depend on all the previous data.
+
+#### Example 1
+
+> Show that £L = \{a^n b^n \mid n \geq 0\}£ is not regular
+>
+> - Suppose £k \geq 0£
+> - Let £x = \epsilon£, £y = a^k£, £z = b^k£
+> - Let £i = 0£
+> - £uv^i w = uw = a^l£ for some £l < k£
+> - Thus £xuv^i wz = a^l b^k£
+> - £a^l b^k \not\in L£, thus £L£ satisfys £\neg P£, thus it is not regular
+
+#### Example 2
+
+> Show that £L = \{a^{n^2} \mid n \geq 0\}£ is not regular
+>
+> - Suppose £k \geq 0£
+> - Let £x = a^{k^2 - k}£, £y = a^k£, £z = \epsilon£ so £xyz = a^{k^2} \in L£
+> - Given £y = uvw£ where £v \ne \epsilon£, £1 \leq \lvert v \rvert \leq k£ (since £v£ is non empry and the length of £y£ is length £k£)
+> - Let £i = 2£, thus £xuvwz = a^{k^2}£, £xuv^2 wz = a^{k^2 + \lvert v \rvert}£
+> - The length of the new string becomes £k^2 + 1 \leq k^2 + \lvert v \rvert \leq k^2 + k£
+> - The next perfect string after £k^2£ is £(k+1)^2 = £k^2 + 2k + 1£
+> - Their are no perfect squares between £k^2£ and £(k+1)^2 = £k^2 + 2k + 1£
+> - Thus £xuv^2 wz£ isnt a perfect square, thus £xuv^2 wz \not\in L£
+> - Thus £L£ satisfys £\neg P£, thus it is not regular

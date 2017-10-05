@@ -307,11 +307,14 @@ P(a) \land ¬B(a) && \text{Conjunction (6, 7)} \\
 \end{align}
 %
 
-## Set
+## Sets, Functions, Relations, Sequences and Sums
 
-An unordered collection of elements
+### Set
 
-### Set Operations
+Set
+:   An unordered collection of elements
+
+#### Set Operations
 
 | Name | Example |
 | :--- | --- |
@@ -329,7 +332,7 @@ An unordered collection of elements
 | Cardinality | £\vert A \vert£ |
 | Cartesian Product | £A \times B£ |
 
-### Common Sets
+#### Common Sets
 
 | Name | Symbol | Description |
 | :--- | --- | --- |
@@ -341,7 +344,7 @@ An unordered collection of elements
 | Rational | £\mathbb{Q}£ | £\\{\frac{a}{b} \mid a \in \mathbb{Z}, b \in \mathbb{Z}^+\\}£ |
 | Complex Numbers | £\mathbb{C}£ |  |
 
-### Set Identitys
+#### Set Identitys
 
 - £A \cup A = A£
 - £A \cap A = A£
@@ -354,11 +357,12 @@ An unordered collection of elements
 - £A \cup (A \cap B) = A£
 - £A \cap (A \cup B) = A£
 
-## Functions
+### Functions
 
-### Syntax
+#### Syntax
 
-A function £f£ from set £A£ to set £B£ assigns an element from £A£ to £B£, this is written as £f: A \rightarrow B£.
+Function
+:   A function £f£ from set £A£ to set £B£ assigns an element from £A£ to £B£, this is written as £f: A \rightarrow B£.
 
 Examples:
 
@@ -367,40 +371,13 @@ Examples:
 - Identity - £\iota_A : A \rightarrow A£
 - Factorial - £! : \mathbb{N} \rightarrow \mathbb{N}£
 
-### Injective
+| Type of function | Condition | Examples |
+| --- | --- | --- |
+| Injective | £\forall a, c \in A (\text{if } f(a) = f(c) \text{ then } a = c)£ | £\iota_A : A \rightarrow A£, £\sqrt{\cdot} : \mathbb{R}^+ \rightarrow \mathbb{R}^+£ |
+| Surjective | £\forall b \in B \; \exists a \in A (f(a) = b)£ | £\iota_A : A \rightarrow A£, £\mathbb{Z} \mod m \;|\; m > 1£ |
+| Bijection | Injective and surjective | £\iota_A : A \rightarrow A£, £\sqrt{\cdot} : \mathbb{R}^+ \rightarrow \mathbb{R}^+£ |
 
-£f : A \rightarrow B£ iff £\forall a, c \in A (\text{if } f(a) = f(c) \text{ then } a = c)£
-
-For every element in A their is an element in B which maps to it.
-
-Examples:
-
-- Identity function
-- £\sqrt{\cdot}£
-
-### Surjective
-
-£f: A \rightarrow B£ is surjective iff £\forall b \in B \; \exists a \in A (f(a) = b)£
-
-For every element in B, their is an element in A which is mapped onto it.
-
-Examples:
-
-- Identity function
-- £\mathbb{Z} \mod m£ for £m > 1£
-
-### One-to-one correspondence or bijection
-
-£f: A \rightarrow B£ is a bijection iff it is both injective and bijective
-
-Every element in the domain is mapped to a value in the range and visa-versa.
-
-Examples
-
-- Identity function
-- £\sqrt{x} : \mathbb{R}^+ \rightarrow \mathbb{R}^+£
-
-### Composition
+#### Composition
 
 Let £f : B \rightarrow C£ and £g: A \rightarrow B£. The composition function £f \circ g : A \rightarrow C£ is £(f \circ g)(a) = f(g(a))£
 
@@ -409,7 +386,7 @@ Let £f : B \rightarrow C£ and £g: A \rightarrow B£. The composition function
 - The composition of two surjective functions is a surjective function
 - The composition of two bijections is a bijection
 
-### Inverse
+#### Inverse
 
 If £f: A \rightarrow B£ is a bijection, then the inverse of £f£, written £f^{-1}:B\rightarrow A£ is £f^{-1}(b) = a£ iff £f(a) = b£
 
@@ -417,11 +394,11 @@ If £f: A \rightarrow B£ is a bijection, then the inverse of £f£, written £f
 - Inverse of £\sqrt{x} : \mathbb{R}^+ \rightarrow \mathbb{R}^+£ is £x^2 : \mathbb{R}^+ \rightarrow \mathbb{R}^+£ 
 - £f^{-1} \circ f£ and £f \circ f^{-1}£ is the identity function
 
-## Relations
+### Relations
 
 A binary relation £R£ on sets £A£ and £B£ is a subset £R \subseteq A \times B£
 
-- Often written as £R\;b£ for £(a, b) \in R£
+- Often written as £a\;R\;b£ for £(a, b) \in R£
 - A function £f£ is a restricted relation where £\forall a \in A \exists b \in B \; (((a, b) \in f) \land \forall c \in B \; ((a, c) \in f \rightarrow c = b))£
     - For all a in £A£ their exsists a £b£ in £B£
     - where (a, b) in relation £f£
@@ -430,13 +407,9 @@ A binary relation £R£ on sets £A£ and £B£ is a subset £R \subseteq A \tim
 
 £R \subseteq A \times B£ where £A£ is students and £B£ is courses, £(\text{Ben}, \text{DMMR}) \in R£
 
-### Operations
+#### Relation composition
 
-Relations are sets, so we can use the same operations, i.e. £R \cup S£ or £R \cap S£
-
-### Realtion composition
-
-Let £R \subseteq B \times C£ and £S \subseteq A \times B£. The composition relation £(R \circ S) \subseteq A \times C£ is £\{(a, c) \;|\; \exists b (a, b) \in S \land (b, c) \in R\}£
+Let £R \subseteq B \times C£ and £S \subseteq A \times B£. The composition relation £(R \circ S) \subseteq A \times C£ is £\{(a, c) \;|\; \exists b \; (a, b) \in S \land (b, c) \in R\}£
 
 The expression specifys the relations where £R£ and £S£ have a common £B£, thus £R \circ S \subseteq A \times C£
 
@@ -446,49 +419,45 @@ Closure £R£ is a relation on £A£:
 - £R^{n+1} = R^n \circ R£
 - £R^* = \bigcup_{n \geq 0}R^n£
 
-### Graph reachability
+#### Types of relation
 
-### Properties
+| Type of relation | Condition | Example |
+| --- | --- | --- |
+| Reflexive | £\forall x \in A (x, x) \in R£ | £\leq£, £=£ |
+| Symetric | £\forall x, y \in A ((x, y) \in R \rightarrow (y, x) \in R)£ | £=£ |
+| Antisymetric | £\forall x, y \in A (((x, y) \in R \land (y, x) \in R) \rightarrow x = y)£ | £\leq£, £=£, £<£ |
+| Transitive | £\forall x, y, z \in A (((x, y) \in R \land (y, z) \in R \rightarrow (x, z) \in R)£ | £\leq£, £=£, £<£ |
+| Equivalance | Reflexive, symetric and transitive | £=£ |
 
-- Reflexive iff £\forall x \in A (x, x) \in R£.
-- £\leq£, £=£ and £|£ are reflexive, but £<£ is not.
-- Symetic iff £\forall x, y \in A ((x, y) \in R \rightarrow (y, x) \in R)£.
-- £=£ is symmetic, but £\leq£, £<£ and £|£ are not.
-- antisymetic iff £\forall x, y \in A (((x, y) \in R \land (y, x) \in R) \rightarrow x = y)£.
-- £\leq£, £=£, £<£ are antisymmetic but £|£ is not.
-- transitive iff £\forall x, y, z \in A (((x, y) \in R \land (y, z) \in R \rightarrow (x, z) \in R)£.
-- £\leq£, £=£, £<£ and £|£ are transitive.
+#### Equivalance classes
 
-A relation £R£ is an equivalance realtion iff it is reflexive, symetric and transitive.
-
-### Equivalnce classes
-
-Let £R£ be an equivalence realtion on a set £A£ and £a \in A£ let £[a]_R = \{s \;|\; (a, s) \in R\}£ be the equivalence class of a w.r.t £R£.
+Let £R£ be an equivalence realtion on a set £A£ and £a \in A£ let £[a]_R = \{s \;|\; (a, s) \in R\}£ be the equivalance class of a w.r.t £R£.
 
 If £b \in [a]_R£ the £b£ is called a representative of the equivalance class.
 
-Let £R£ be an equivalnce realtion on £A£ amd £a, b \in A£. Then following statements are equivalnet
+Let £R£ be an equivalance realtion on £A£ amd £a, b \in A£. Then following statements are equivalnet
 
 - £a R b£
 - £[a]_R = [b]_R£
 - £[a]_R \cap [b]_R \ne \emptyset£
 
-### Partitions of a Set
+#### Partitions of a Set
 
 A partition of set £A£ is a collection of disjoint, nonempty subsets that have £A£ as their union, in other words the collection of subsets £A_i \subseteq A£ with £i \in I£ (where £I£ is the index set) forms a partition of £A£ iff
 
 - £A_i \ne \emptyset£ for all £i \in I£
 - £A_i \cap A_j = \emptyset£ for all £i \ne j \in I£
-- £\bigcup_{i\inI} A_i = A£
+- £\bigcup_{i\in I} A_i = A£
 
-#### TODO: finish this
+From this can see:
 
-## Sequences
+- If £R£ is an equivalance class on £A£, then the equivalance classes of £R£ form a partion of £A£.
+- Conversly, given a partition £\{A_j \mid i \in I\}£ of £A£, there exsists an equivalance relation £R£ that has the sets £A_i£, £i \in I£, as its equivalence classes.
+
+### Sequences
 
 Sequence
-:   Ordered list of elements
-
-£f : \mathbb{Z}^+ \rightarrow \mathbb{Q}£ is £f(n) = \frac{1}{n}£ defines the sequence £1, \frac{1}{2}, \frac{1}{3}, \frac{1}{4}£
+:   Ordered list of elements for example, £f : \mathbb{Z}^+ \rightarrow \mathbb{Q}£ is £f(n) = \frac{1}{n}£ defines the sequence £1, \frac{1}{2}, \frac{1}{3}, \frac{1}{4}£
 
 Geometric progressions
 :   A sequence in the form £a, ar, ar^2, ar^3, ...£
@@ -496,7 +465,7 @@ Geometric progressions
 Arithmetic progressions
 :   A sequence in the form £a, a + d, a + 2d, a + 3d, ...£
 
-### Recurrence relations
+#### Recurrence relations
 
 Recurrence relations
 :   A recurance relations for £\{a_n\}_{n \in \mathbb{N}}£ is an equation that expreses £a_n£ in terms of one or more elements of £a_0, a_1, a_{n-1}£
@@ -506,46 +475,134 @@ Recurrence relations
 
 The realtion is:
 %
-\begin{cases}
-f(a) & 1 \\
-f(2) & 2 \\
-f(n) & f(n-1) + f(n-2) for n > 2
-\end{cases}
+$$
+\begin{cases*}
+f(1) & $= 1$ \\
+f(2) & $= 1$ \\
+f(n) & $= f(n-1) + f(n - 2)$
+\end{cases*}
+$$
 %
 
-Solving a recurrence relations if finding the nth term, one way of solving is an inteative aproach
+Solving a recurrence relations if finding the nth term, one way of solving is an iterative aproach
 
 > Supose a person deposits $1000 in savings with 3 percent intrest, how much is the account worth after 20 years
+>
 > - Let £P_n£ denote the amount after £n£ years
 > - £P_n = 1.03 \times P_{n-1}£
 > - £P_0 = 1000£
-> - £P_1 = 1.03 P_0, ... P_n = (1.03)^n P_0£
+> - £P_1 = 1.03 \times P_0, ...,  P_n = (1.03)^n \times P_0£
 
-### Common sequences
+### Sumations
 
-| nth term | first 10 terms |
-| £n^2£ ||
-| £n^3£ ||
-| £n^4£ ||
-| £2^n£ ||
-| £3^n£ ||
-| £n!£ ||
-| £fn£ ||
+Given a sequence £\{a_n\}£, the sum of the terms is 
+%$$a_m + a_{m+1} + ... + a_l \text{ or } \sum_{j=m}^{l}{a_j}$$%
 
-## Sumations
 
-Given a sequence £\{a_n\}£, the sum of the terms is £a_m + a_{m+1} + ... + a_l£ or £\sum_{j=m}^{l}{a_j}£
+#### Usefull sumations
 
-### Usefull sumations
+| Sum | Closed form |
+| --- | --- |
+| £\sum^n_{k=0}{ar^k}\;(r \ne 0)£ | £\frac{ar^{n+1}-a}{r-1}£, £r \ne 1£ |
+| £\sum^n_{k=1}{k}£ | £\frac{n(n+1)}{2}£ |
+| £\sum^n_{k=1}{k^2}£ | £\frac{n(n+1)(2n+1)}{6}£ |
+| £\sum^n_{k=1}{k^3}£ | £\frac{n^2(n+1)^2}{4}£ |
+| £\sum^{\infty}_{k=0}{x^k}\;(\lvert x \rvert < 1)£ | £\frac{1}{1-x}£ |
+| £\sum^{\infty}_{k=1}{kx^{k-1}}\;(\lvert x \rvert < 1)£ | £\frac{1}{(1-x)^2}£ |
 
-## Product
+#### Product
 
-Given a sequence £\{a_n\}£, the product of the terms i s£a_m \times a_{m+1} \times ... \times a_l£ or £\prod{a_ j}_ {j=m}^{l}£, or more generally for a finite index set £S£, £\prod_{j \in S}{a_j}£
+Given a sequence £\{a_n\}£, the product of the terms is 
+%
+$$
+a_m \times a_{m+1} \times ... \times a_l \text{ or } \prod_{j=m}^{l}{a_ j}
+$$
+%
+
+or more generally for a finite index set £S£, 
+%
+$$
+\prod_{j \in S}{a_j}
+$$
+%
 
 ## Cartinality
 
-- Two sets have the same cardinality £|X| = |Y|£ iff there is an bijection £f : X \rightarrow Y£
-- £|X| \leq |Y|£ iff there is an injection £f : X \rightarrow Y£
-- Unlike finite sets £A \subset B£ and £|A| = |B|£
+Finite set
+:   A set £S£ is finite with cardinality £n \in N£ if there is a bijection from the set £\{0, 1, ..., n - 1\}£ to £S£.
 
-#### TODO: example
+Infinite set
+:   A set that is not finite
+
+> Prove the set of natural numbers, £N£, is an infinite set.
+>
+> - Consider the function £f: N \rightarrow N£ defined as £f(x) = 3x£
+> - £f£ is injective, since every element in the domain has an element in the codomain which is mapped to it.
+> - £f£ is not subjective, since £2£ is in the codomain but is has no element in the domain which maps to it.
+> - Thus £f£ is not a bijection.
+> - Thus £N£ is an infinite set.
+
+### Countable sets
+
+Countable
+:   A set that is either finite or has the same cardinality as the set of the positive integers
+
+Uncountable
+:   A set that is not countable
+
+An infinite set £S£ is countable, we denote the cardinality of £S£ by £\aleph_0£ 
+
+- If £A£ and £B£ are countable sets, then £A \cup B£ is also countable
+- If £I£ is countable and for each £i \in I£ the set £A_i£ is countable then £\bigcup_{i \in I} A_i£ is countable
+
+> Show that the set of real numbers is uncountable 
+>
+> - Assume that the set of real numbers is countable
+> - The the real numbers between £0£ and £1£ must also be countable
+> - We can list these numbers with decimal noation %
+\begin{align*}
+r_1 &= 0.d_{11} d_{12} d_{13} ...\\
+r_2 &= 0.d_{21} d_{22} d_{23} ...\\
+r_3 &= 0.d_{31} d_{32} d_{33} ...\\
+...
+\end{align*}
+%
+> - Where £d_{ij} \in \{0, 1, 2, 3, 4, 5, 6, 7, 8 9\}£
+> - We can define a number £j = 0.d_1 d_2 d_3 ...£
+> - Where %
+$$
+d_i = \begin{cases*}
+2 & if $d_{ij} \ne 2$ \\
+3 & if $d_{ij} = 2$
+\end{cases*}
+$$
+%
+> - So £j£ defines a number that is diffrent from £r_i£ in the £i^{th}£ number
+> - Thus their is a real number between £0£ and £1£ that is not in the list
+> - Therefore the set of real numbers cannot be listed.
+
+### Schröder-Bernstein Theorem
+
+If £A£ and £B£ are sets with £\lvert A \rvert \leq \lvert B \rvert£ and £\lvert B \rvert \leq \lvert A \rvert£, then £\lvert A \rvert = \lvert B \rvert£. In other words, if there are one-to-one functions £f£ from £A£ to £B£ and £g£ from £B£ to £A£, then there is a one-to-one correspondence between £A£ and £B£.
+
+> Show that £\lvert (0, 1) \rvert = \lvert (0, 1] \rvert£
+>
+> - Since £(0, 1) \subset (0, 1]£, their is a one-to-one function from £(0, 1)£ to £(0, 1]£
+> - Lets define £g(x) = \dfrac{x}{2}£, which is a mapping from £(0, 1]£ to £(0, \frac{1}{2}]£, £(0, \frac{1}{2}] \subset (0, 1)£ so their is a one £(0, 1]£ to £(0, 1)£.
+> - Thus £\lvert (0, 1) \rvert = \lvert (0, 1] \rvert£, due to Schröder-Bernstein Theorem
+
+### Cantor’s theorem
+
+£\lvert A \rvert < \lvert \mathcal{P}(A) \rvert£
+
+> Proof
+>
+> - Consider the injection £f: A \rightarrow \mathcal{P}(A)£ with £f(a) = \{a\}£ for any £a \in A£.
+> - Therefore £\lvert A \rvert \leq \lvert \mathcal{P}(A) \rvert£
+> - Assume a surjection £f£ exsists
+> - Let £B \subseteq A : B = \{x \in A \mid x \not\in f(x)\}£
+> - Since £f£ is a surjection, there must exist an £a \in A£ such that £B = f(a)£
+>       - If £a \in B£ then by definition of £B£, £a \not\in B = f(a)£ (contradiction)
+>       - If £a \not\in B£ then £a \not\in f(a)£, by definition of £B£, £a \in B£ (contradiction)
+
+One consequence of cantors theorem is that their is an infinite hierarchy of sets of larger cardinality.

@@ -587,7 +587,7 @@ If £A£ and £B£ are sets with £\lvert A \rvert \leq \lvert B \rvert£ and £
 
 > Show that £\lvert (0, 1) \rvert = \lvert (0, 1] \rvert£
 >
-> - Since £(0, 1) \subset (0, 1]£, their is a one-to-one function from £(0, 1)£ to £(0, 1]£
+> - Since £(0, 1) \subset (0, 1]£, their is a one-to-one function (e.g. identity function) from £(0, 1)£ to £(0, 1]£
 > - Lets define £g(x) = \dfrac{x}{2}£, which is a mapping from £(0, 1]£ to £(0, \frac{1}{2}]£, £(0, \frac{1}{2}] \subset (0, 1)£ so their is a one £(0, 1]£ to £(0, 1)£.
 > - Thus £\lvert (0, 1) \rvert = \lvert (0, 1] \rvert£, due to Schröder-Bernstein Theorem
 
@@ -601,9 +601,9 @@ If £A£ and £B£ are sets with £\lvert A \rvert \leq \lvert B \rvert£ and £
 > - Therefore £\lvert A \rvert \leq \lvert \mathcal{P}(A) \rvert£
 > - Assume a surjection £f£ exsists
 > - Let £B \subseteq A : B = \{x \in A \mid x \not\in f(x)\}£
-> - Since £f£ is a surjection, there must exist an £a \in A£ such that £B = f(a)£
->       - If £a \in B£ then by definition of £B£, £a \not\in B = f(a)£ (contradiction)
->       - If £a \not\in B£ then £a \not\in f(a)£, by definition of £B£, £a \in B£ (contradiction)
+> - Since £f£ is a surjection, there must exist an £a \in A£ such that £B = f(a)£   
+>       - If £a \in B£ then by definition of £B£, £a \not\in f(a)£, thus £a \not\in B£ (contradiction)
+>       - If £a \not\in B£ then £a \in f(a)£, by definition of £B£, £a \in B£ (contradiction)
 
 One consequence of cantors theorem is that their is an infinite hierarchy of sets of larger cardinality.
 
@@ -620,7 +620,7 @@ Inductive step
 
 > Prove that if £n£ is a positive integer £P(n) = \displaystyle\sum^n_{k=1}{k} = \dfrac{n(n+1)}{2}£
 >
-> - £P(1) = \dfrac{1(1+1)}{2} = 1£, thus £P(1) is true£
+> - £P(1) = \dfrac{1(1+1)}{2} = 1£, thus £P(1)£ is true
 > - Assuming £P(k)£ holds, then it must be shown that £P(k+1)£ holds %
 \begin{align*}
 P(k+1) &= \frac{(k+1)[(k+1)+1]}{2}\\

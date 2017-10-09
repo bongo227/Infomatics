@@ -4,13 +4,13 @@ Mantissa/significand
 :   Fractional part
 
 Exponent
-:   Power of $2$
+:   Power of £2£
 
-> Convert $25_{10}$ in floating point form
+> Convert £25_{10}£ in floating point form
 >
-> $25_{10} = 011001_2$
+> £25_{10} = 011001_2£
 >
-> $1.1001 \times 2^4$
+> £1.1001 \times 2^4£
 
 ### Why normalize?
 1. Simplifiys machine representation
@@ -19,16 +19,16 @@ Exponent
 
 ### IEEE 654 Floating Point Standard
 
-- 1'st bit is sign bit ($s$)
-- 8 bits for exponent ($exp$)
-- rest for mantissa ($m$)
+- 1'st bit is sign bit (£s£)
+- 8 bits for exponent (£exp£)
+- rest for mantissa (£m£)
 
 Encoding:
-$s \times m \times 2 ^ {exp - 127}$
+£s \times m \times 2 ^ {exp - 127}£
 
 (127 is the __bias__)
 
-$0.75_{10} = 0.11_2 = {(1.1 \times 2^{-1})}_2$
+£0.75_{10} = 0.11_2 = {(1.1 \times 2^{-1})}_2£
 
 ### Why bias?
 

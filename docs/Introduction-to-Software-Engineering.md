@@ -188,5 +188,44 @@ A UML model
 - Wastefull (mistakes in requirements)
 
 XP maxinms:
+
 - You aint going to need it
 - Do the simplest thing that could possibly work
+
+## Dynamic aspects of design
+
+Their are two types of behaviour within OO systems
+
+Inter-object bhaviour
+:   Who sends whcih messages to whom?
+
+Intra-object behaviour
+:   What state changes does each object undergo as it revieves messages? How does this effect its behaviour?
+
+### Inter-object behaviour
+
+- Classes should correspond to domain consepts
+- Data encapsulated should match real world model
+- Work out what operations are needed for the usecases
+
+It may not be obvious when several objects that have to collaborate. CRC cards can help.
+
+### Interaction diagrams
+
+Describes dynamic interactions, good for showing how the system realized a use case. UML has two diagrams, sequence and communication diagrams.
+
+1. Decide exactly what behaviour to model
+2. Name the objects which are involved
+3. Identify the sequence of messages which objects sends
+4. Record this in the syntax of an interaction diagram
+
+### Good interaction diagrams
+
+Conceptual coherence
+:   Does it make sence for thus class to have that operation
+
+Maintainability
+:   Which aspects might change, how hard woull it be to change the itnterataction
+
+Performance
+:   Is all the work being done neccessary

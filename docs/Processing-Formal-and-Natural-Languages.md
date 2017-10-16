@@ -317,3 +317,48 @@ A &\rightarrow \epsilon \mid 1 A \mid 0 B \\
 B &\rightarrow \epsilon \mid 1 B \mid 0 A
 \end{align*}
 %
+
+## Pushdown Automata
+
+Pushdown Automata
+:   A control unit with finite states, equipped with a read head (that can only read the input left to right). Additionaly their is a stack which can be read, pushed and popped.
+
+Consider a PDA with a single state £q£, input alphabet £\sum = \{(,)\}£ and stack alphabet £\Gamma = \{(,\bot \}£. Call £\bot£ the initial stack symbol.
+
+The DA has four transitions in the form £\text{Input symbol, Top of stack : Pop top of stack then push onto stack}£
+
+1. £(,\bot : (\bot£
+2. £(,( : ((£
+3. £),( : \epsilon£
+4. £\epsilon, \bot : \epsilon£
+
+For example, if the current read symbol is £(£ and the current stack symobl is £\bot£, pop £\bot£ then push £\bot£ then £(£
+
+| Transition | Input | Stack state |
+| --- | --- | --- |
+| | £(()())£ | £\bot£ |
+| 1 | £()())£ | £(\bot£ |
+| 2 | £)())£ | £((\bot£ |
+| 3 | £())£ | £(\bot£ |
+| 2 | £))£ | £((\bot£ |
+| 3 | £)£ | £(\bot£ |
+| 3 | £\epsilon£ | £\bot£ |
+| 4 | £\epsilon£ | £\epsilon£ |
+
+If the input string has well matched brackets the stack will be emptyed when the input string ends, otherwise the brackets are not well matched.
+
+### Formal defintiion
+
+- A finite set of control states £Q£
+- Fintite set of input alphabet £\sum£
+- Finite stack alphabet £\Gamma£ including start symbol £\bot£
+- Start state £s \in Q£
+- Finite transition relation £\delta \subseteq (Q \times (\sum \cup \{ \epsilon \}) \times £\Gamma£) \times (Q \times \Gamma *)£
+
+A string is accepted if their is some run of £M£ on £x£ starting at £s£ with stack £\bot£, and finishing (at any control state) with an empty stack having consumed all of £x£.
+
+### CGG's to NPDA's
+
+0. Stingle state £q£, input alphabet £\sum£, and stack alphabet £N \cup \sum£, and £S£ as the initial stack symbol
+1. For each production £X \rightarrow a£ in P, include an £\epsilon£ transition, £q \xrightarrow{\epsilon, X : \alpha} q£
+2. FOr each

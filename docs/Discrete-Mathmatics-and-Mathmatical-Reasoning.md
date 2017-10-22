@@ -656,3 +656,91 @@ Inductive step
 >       - If it is composite, then £k+1£ is the product of two positive integers £a£ and £b£ that are £2 \leq a \leq b < (k+1)£.
 >           - Thus since both are less than £k+1£, by strong induction they can be rewritten as the product of primes
 >           - Thus £k+1£ can be written as the product of primes
+
+## Multiplicative Inverses
+
+Linear congruence
+:   A congruence in the form £ax = b \; (\text{mod } m)£
+
+Inverse
+:   An interger £\bar{a}£, for which £\bar{a} a = 1 \; (\text{mod } m)£
+
+Their is an efficent algorithum for computing the inverse of £a \text{ mod } m£ when £\text{gcd}(a, m) = 1£. We can find the linear combination £sa + tm = 1£, reducing both sides by modulo £m£ gives £s£ as an inverse.
+
+### Example
+
+Find an inverse of £101£ modulo £4620£
+
+%
+\begin{align*}
+4620 &= 45 \times 101 + 75 \\
+101 &= 1 \times 75 + 26 \\
+75 &= 2 \times 26 + 23 \\
+26 &= 1 \times 23 + 3 \\
+23 &= 7 \times 3 + 2 \\
+3 &= 1 \times 2 + 1 \\
+2 &= 2 \times 1 && \text{Thus gcd(101, 4620) = 1}
+\end{align*}
+%
+
+%
+\begin{align*}
+1 &= 3 - 1 \times 2 \\
+&= 3 - 1 \times (23 - 7 \times 3) = -1 \times 23 + 8 \times 3 \\
+&= -1 \times 23 + 8 \times (26 - 1 \times 23) = -9 \times 23 + 8 \times 26 \\
+&= -9 \times (75 - 2 \times 26) + 8 \times 26 = -9 \times 75 + 26 \times 26 \\
+&= -9 \times 75 + 26 \times (101 - 1 \times 75) = 26 \times 101 - 35 \times 75 \\
+&= 26 \times 101 - 35 \times (4620 - 45 \times 101) = -35 \times 4620 + 1601 \times 101 \\ 
+\end{align*}
+%
+
+Thus £1601£ is the inverse of £101 \text{ mod } 4620£
+
+### The chinese remainder theorem
+
+Let £m_1, m_2, ..., m_n£ be pairwise relative primes greater than 1.
+
+%
+\begin{align*}
+x &\equiv a_1 \; (\text{mod } m_1) \\
+x &\equiv a_2 \; (\text{mod } m_2) \\
+\vdots \\
+x &\equiv a_n \; (\text{mod } m_n) \\
+\end{align*}
+%
+
+Then the system above has a unique solution modulo £m = m_1 \times m_2 \times ... \times m_n£
+
+#### Example
+
+%
+\begin{align*}
+x &\equiv 2 \; (\text{mod } 3) \\
+x &\equiv 3 \; (\text{mod } 5) \\
+x &\equiv 5 \; (\text{mod } 7) \\
+\\
+m &= 3 \times 5 \times 7 \\
+&= 105 \\
+\\
+M_1 &= 35 && \text{2 is an inverse of $M_1$ mod 3} \\
+M_2 &= 21 && \text{1 is an inverse of $M_2$ mod 5} \\
+M_3 &= 15 && \text{1 is an inverse of $M_3$ mod 2} \\
+\\
+x &= 2 \cdot 35 \cdot 2 + 3 \cdot 21 \cdot 1 + 5 \cdot 15 \cdot 1 \\
+&= 278 \\
+\\
+278 &\equiv 68 \; (\text{mod } 105)
+\end{align*}
+%
+
+### Fermat's little theorem
+
+If £p£ is prime and £a£ is an integer not divisible by £p£ then:
+
+%$$ a^{p-1} \equiv 1 \; (\text{mod } p) \quad \text{and} \quad a^p \equiv a \; (\text{mod } p) $$%
+
+#### Example
+
+Find £7^{222} \text{ mod } 11£.
+
+£p = 11£ and £a = 7£, so by fermat's little theorem £7^{11 - 1} \equiv 7^{10} \equiv 1 \; (\text{mod } 11)£. £(7^{10})^k \equiv 1 \; (\text{mod } 11)£ for every positive integer £k£. Therefore £7^{222} = 7^{22 \times 10 + 2} = (7^{10})^{22} \times 7^2 = (7^{10})^{22} \times 49£. £(7^{10})^{22} \times 49 \equiv 1^{22} \times 49 \equiv 5 \; (\text{mod } 11)£. Hence £7^{222} \text{ mod } 11 = 5£.

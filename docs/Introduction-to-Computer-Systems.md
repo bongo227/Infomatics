@@ -213,3 +213,13 @@ The stack is also used to:
 - Save `$s` registers
 - Pass and return values if their isnt enough registers
 - Local variables inside a function (that dont fit into registers)
+
+## Logic design
+
+Combinational logic
+:   Out depends on the current input (no memory)
+
+Sequential logic
+:   Output depends of current input and some previous inputs (requires memory)
+
+### Combinational logic circuits

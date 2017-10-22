@@ -1,3 +1,5 @@
+# Inf2A - Formal Languages
+
 ## Closure Properties of Regular Languages
 
 ### £\epsilon£-NFA
@@ -229,9 +231,6 @@ For all £k \geq 0£, there exist strings £x, y, z£ with £xyz \in L£ and £\
 
 ### Context free grammers
 
-```
-```
-
 %
 \begin{align*}
 \text{Exp} &\rightarrow \text{Var} \mid \text{Num} \mid ( \text{Exp} ) \\
@@ -353,12 +352,356 @@ If the input string has well matched brackets the stack will be emptyed when the
 - Fintite set of input alphabet £\sum£
 - Finite stack alphabet £\Gamma£ including start symbol £\bot£
 - Start state £s \in Q£
-- Finite transition relation £\delta \subseteq (Q \times (\sum \cup \{ \epsilon \}) \times £\Gamma£) \times (Q \times \Gamma *)£
+- Finite transition relation £\delta \subseteq (Q \times (\sum \cup \{ \epsilon \}) \times \Gamma) \times (Q \times \Gamma *)£
 
 A string is accepted if their is some run of £M£ on £x£ starting at £s£ with stack £\bot£, and finishing (at any control state) with an empty stack having consumed all of £x£.
 
 ### CGG's to NPDA's
 
-0. Stingle state £q£, input alphabet £\sum£, and stack alphabet £N \cup \sum£, and £S£ as the initial stack symbol
-1. For each production £X \rightarrow a£ in P, include an £\epsilon£ transition, £q \xrightarrow{\epsilon, X : \alpha} q£
-2. FOr each
+1. Stingle state £q£, input alphabet £\sum£, and stack alphabet £N \cup \sum£, and £S£ as the initial stack symbol
+2. For each production £X \rightarrow a£ in P, include an £\epsilon£ transition, £q \xrightarrow{\epsilon, X : \alpha} q£
+3. For each terminal £a \in \Sigma£, include a transition £p \xrightarrow{a, a:\epsilon} q£
+
+Consider parsing the string £(x) \times 5£ using the CFG earlier. At each stage we guess the correct rule to apply.
+
+%
+\begin{tabular}{l|l|r}
+Transition & Input read & Stack state \\ \hline
+& $\epsilon$ & Exp \\
+Apply $\times$ rule & $\epsilon$ & $\text{Exp} \times \text{Exp}$ \\
+Apply $()$ rule & $\epsilon$ & $(\text{Exp}) \times \text{Exp}$ \\
+Match $($ & $($ & $\text{Exp}) \times \text{Exp}$ \\
+Apply Var rule & $($ & $\text{Var}) \times \text{Exp}$ \\
+Match $x$ rule & $(x$ & $) \times \text{Exp}$ \\
+Match $)$ rule & $(x)$ & $\times \text{Exp}$ \\
+Match $\times$ rule & $(x) \times$ & $\text{Exp}$ \\
+Apply Num rule & $(x) \times$ & $\text{Num}$ \\
+Apply $5$ rule & $(x) \times$ & $5$ \\
+Match $5$ & $(x) \times 5$ & \\
+\end{tabular}
+%
+
+Note that each stage, the combination of input read and stack state gives a _sentential form_. The result is the leftmost derivation.
+
+## LL(1) Pridictive Parsing
+
+LL(1)
+:   Read the input from the __L__eft, build the __L__eftmost derivation, looking __1__ symbol ahead.
+
+To determine what rules to apply (not guess as we have done before) we use two pieces of infomation:
+
+- Current lexical token
+- The nonterminal to be expanded
+
+If it is always possible to determine the rule using these pieces of infomation the languages is said to be LL(1).
+
+### Example
+
+Consider the following CFG
+
+%
+\begin{align*}
+S &\rightarrow \epsilon \mid TS \\
+T &\rightarrow (S)
+\end{align*}
+%
+
+We can derive a _parse table_, which is a table of terminals and nonterminals that tells us what rule to apply for each case.
+
+%
+\begin{tabular}{c|ccc}
+& ( & ) & \$ \\ \hline
+$S$ & $S \rightarrow TS$ & $S \rightarrow \epsilon$ & $S \rightarrow \epsilon$ \\
+$T$ & $T \rightarrow (S)$ &  &
+\end{tabular}
+%
+
+The £\$£ signifys the end of input. Blank entries corresponds to illegals states thus the string is illegal.
+
+### Parsing
+
+Given a parse table we can parse a string using the following:
+
+1. Begin with the start symbol £S£ on the stack.
+2. If the current input symbol £a£ (could be £\$£), and the current stack symbol is a non-terminal £X£, look up the rule for £a,X£ in the table.
+3. If the current input symbol is £a£ and the stack symbol is £a£ just pop £a£ and advance input.
+4. Accept if the stack empties with £\$£ as the input symbol.
+
+### Example
+
+Conside the input string £(())£ and the parse table from above:
+
+%
+\begin{tabular}{c|ccc}
+& ( & ) & \$ \\ \hline
+$S$ & $S \rightarrow TS$ & $S \rightarrow \epsilon$ & $S \rightarrow \epsilon$ \\
+$T$ & $T \rightarrow (S)$ &  &
+\end{tabular}
+%
+
+Parsing is as follows:
+
+%
+\begin{tabular}{l|l|r}
+Operation & Remaining input & Stack state \\ \hline
+& $(())\$$ & S \\
+Lookup $(,S$ & $(())\$$ & TS \\
+Lookup $(,T$ & $(())\$$ & (S)S \\
+Match $($ & $())\$$ & S)S \\
+Lookup $(,S$ & $())\$$ & TS)S \\
+Lookup $(,T$ & $())\$$ & (S)S)S \\
+Match $($ & $))\$$ & S)S)S \\
+Lookup $),S$ & $))\$$ & )S)S \\
+Match $)$ & $)\$$ & S)S \\
+Lookup $),S$ & $)\$$ & )S \\
+Match $)$ & $\$$ & S \\
+Lookup $\$,S$ & $\$$ & \\
+\end{tabular}
+%
+
+### Formal defintion
+
+£\mathcal{G}£ is LL(1) if for each terminal £a£ and nonterminal £X£, there is some production £X \rightarrow \alpha£ with the following property:
+
+If £b_1 ... b_n X \gamma£ is a sentential form appearing in a leftmost derivation of some string £b_1 ... b_n a c_1 ... c_m (n, m \geq 0)£, the next sentential form appearing in the derivation is necessarily £b_1 ... b_n \alpha \gamma£.
+
+### Non-LL(1) grammers
+
+Consider the folloing grammer:
+
+%$$S \rightarrow \epsilon \mid (S) \mid SS$$%
+
+Now suppose the initial stack is £S£ and the first input symbol is £(£. We cant decide without looking ahead, if the rule to apply is £S \rightarrow (S)£ or £S \rightarrow SS£.
+
+### Generating parse tables
+
+£First(X)£
+:   The set of all terminals that can appear at the start of a phrase derived from £X£.
+
+£Follow(X)£ 
+:   The set of all terminals that can appear immediately after X in some sentential form derived from the start symbol £S£.
+
+can be empty
+:   £\forall i [\epsilon \in First(x_i)]£
+
+can begin with £a£
+:   £\epsilon \in First(x_1) \cap ... \cap First(x_{i-1}£, and £a \in First(x_i)£
+
+1. For each nonterminal £X£, compute two sets called £First(X)£ and £Follow(X)£.
+    1. First sets
+        0. Compute set £E£, which is the set of nonterminals that 'can be £\epsilon£'.
+            - Add £X£ to £E£ whenever £X \rightarrow \epsilon£ is a production £\mathcal{G}£.
+            - If £X \rightarrow Y_1 ... Y_m£ is a production and all £Y_1, ... Y_m£ are already in £E£, add £X£ to £E£.
+            - Repeat until £E£ stabilizes
+        1. Set £First(a) = \{a\}£ for each £a \in \Sigma£.
+        2. For each nonterminal £X£, initially set £First(X)£ to £\{ \epsilon \}£ if £X \in E£, or £\emptyset£ otherwise.
+        3. For each production £X \rightarrow x_1 ... x_n£ and each £i \leq n£, if £x_1, ..., x_{i-1} \in E£ and £a \in First(x_i)£, add £a£ to £First(X)£.
+        4. Repeat step (d.) until all £First£ sets stabalize 
+    2. Follow sets
+        1. Intially set £Follow(S) = \{\$\}£ for the start symbol £S£, and £Follow(X) = \emptyset£ for all nonterminals £X£.
+        2. For each production £X \rightarrow \alpha£, each splitting of £\alpha£ as £\beta Y x_1 ... x_n£ where £n \geq£ 1, and each £i£ with £x_1, ..., x_{i_1} \in E£, add all of £First(x_i)£ (excluding £\epsilon£) to £Follow(Y)£.
+        3. For each production £X \rightarrow \alpha£ and each splitting of £\alpha£ as £\beta Y£ or £\beta Y x_1 ... x_n£ with £x_1, ..., x_n \in E£, add all of £Follow(X)£ to £Follow(Y)£.
+        4. Repeat step 3 until all £Follow£ sets stabalize.
+2. Use the First and Follow sets to fill out the parse tables.
+    1. For each production £X \rightarrow \alpha£ of £\mathcal{G}£ in turn:
+        - For each terminal £a£, if £\alpha£ _can begin with_ £a£, insert £X \rightarrow \alpha£ in row £X£, column £a£.
+        - If £\alpha£ _can be empty_, then for each £b \in Follow(X)£ (where b may be £\$£), insert £X \rightarrow \alpha£ in row £X£, column £b£.
+        - If their are clashes, the grammer is not LL(1).
+
+
+### Example
+
+Consider the following CFG
+
+%
+\begin{align*}
+S &\rightarrow \epsilon \mid TS \\
+T &\rightarrow (S)
+\end{align*}
+%
+
+- First sets
+    - £E = \{S\}£
+    - £First(() = \{(\}£
+    - £First()) = \{)\}£
+    - £First(S) = \{ \epsilon \}£ (since £S \in E£)
+    - £First(T) = \emptyset£ (since £T \not\in E£)
+    - £First(T) = \{ ( \} \cup First(T)£ (since £( \in First(()£)
+    - £First(S) = \{ ( \} \cup First(S)£ (since £( \in First(T)£) 
+- Follow sets
+    - Start with £Follow(S) = \{\$\}, Follow(T) = \emptyset£
+    - £Follow(S) = Follow(S) \cup \{)\}£
+    - £Follow(T) = Follow(T) \cup \{(\}£
+    - £Follow(T) = Follow(T) \cup \{), \$\}£
+- For production £S \rightarrow \epsilon£
+    - £\epsilon£ _can be empty_ 
+    - Insert the production into £),S£ and £\$,S£
+- For production £S \rightarrow TS£
+    - £TS£ can begin with £(£
+    - Insert the production into £(,S£
+- For prodcution £T \rightarrow (S)£
+    - £(S)£ can begin with £(£
+    - Insert the production into £(,T£
+
+%
+\begin{tabular}{l|ccccccc}
+       & n & + & $*$ & $-$ & == & \$ \\ \hline
+    C  & & & & C $\rightarrow$ E == E & & C $\rightarrow$ E == E\\
+    E  & & & & E $\rightarrow$ TE P & & E $\rightarrow$ TE P\\
+    TE & & TE $\rightarrow$ O $n$ TO & & TE $\rightarrow$ O $n$ TO & & TE $\rightarrow$ O n TO \\
+    O  & & & & O $\rightarrow$ $-$ & & O $\rightarrow$ $\epsilon$ \\
+    TO & & TE $\rightarrow$ O $n$ TO & TO $\rightarrow$ $*$ & & & TO $\rightarrow$ $\epsilon$  \\
+    P  & & P $\rightarrow$ $+$ & & & & P $\rightarrow$ $\epsilon$  \\
+\end{tabular}
+%
+
+### Problems with grammers
+
+- They may be ambiguous (can have more than one leftmost derivation)
+- They may have shared prefixes
+- They may be left-recursive e.g. £\text{Exp} \rightarrow \text{Exp} + \text{Exp}£
+
+#### Ambiguity
+
+Here is an example of an ambigious statement:
+
+%
+\begin{align*}
+\text{Exp} \rightarrow & \text{Num} \\
+& \mid \text{Var} \\
+& \mid \text{(Exp)} \\
+& \mid -\text{Exp} \\
+& \mid \text{Exp} + \text{Exp} \\
+& \mid \text{Exp} - \text{Exp} \\
+& \mid \text{Exp} * \text{Exp} \\
+\end{align*}
+%
+
+For example, £2 * 4 + 3£, could be parsed as £(2 * 4) + 3£ or £2 * (4 + 3)£.
+
+To make it _unambiguous_, we can add nonterminals, to capture distinct classes of expressions
+
+%
+\begin{align*}
+\text{Exp} \rightarrow & \text{ ExpA} \mid \text{Exp} + \text{ExpA} \mid \text{Exp} - \text{ExpA} \\
+\text{ExpA} \rightarrow & \text{ ExpB} \mid \text{ExpA} * \text{ExpB} \\
+\text{ExpB} \rightarrow & \text{ (Exp)} \mid - \text{ExpB} \\
+\text{ExpC} \rightarrow & -\text{Num} \mid \text{Var} \mid \text{(Exp)} \\
+\end{align*}
+%
+
+Note this is note quite LL(1) yet.
+
+#### Shared Prefixs
+
+%
+\begin{align*}
+\text{Smnt} &\rightarrow do \text{ Smmt } while \text{ Cond}\\
+\text{Smnt} &\rightarrow do \text{ Smmt } until \text{ Cond}
+\end{align*}
+%
+
+In this example, an LL(1) parser would have no way to choose between these rules. The solution is to 'factor out' the common parts to delay the choice.
+
+%
+\begin{align*}
+\text{Smnt} &\rightarrow do \text{ Smmt Test}\\
+\text{Test} &\rightarrow while \text{ Cond} \mid until \text{ Cond}
+\end{align*}
+%
+
+#### Left recursion
+
+Conside the rules
+
+%
+\begin{align*}
+\text{Exp} \rightarrow & \text{ExpA} \\
+& \mid \text{Exp} + \text{ExpA} \\
+& \mid \text{Exp} - \text{ExpA} \\
+\end{align*}
+%
+
+Notice how it must start with £\text{ExpA}£, and that it is followed by zero or more £+ \text{ExpA}£ or £- \text{ExpA}£. We can use this observation to remove the left recursion like so:
+
+%
+\begin{align*}
+\text{Exp} \rightarrow & \text{ ExpA OpsA} \\
+\text{OpsA} \rightarrow & \; \epsilon \mid + \text{ExpA OpsA} \mid - \text{ExpA OpsA} \\
+\end{align*}
+%
+
+## Chomsky Normal Form
+
+A context free grammer £\mathcal{G} = (N, \Sigma, P, S)£ is in _Chomsky normal form (CNF)_ if all productions are of the form:
+
+%
+$$
+A \rightarrow BC \text{ or } A \rightarrow a \quad (A, B, C \in N, a \in \Sigma)
+$$
+%
+
+If we disregard the empty string every language £\mathcal{G}£ can be transformed into a grammer £\mathcal{G}'£ in CFG
+
+%
+$$
+\mathcal{L}(\mathcal{G}') = \mathcal{L}(\mathcal{G}) - \{ \epsilon \}
+$$
+%
+
+### Converting to CFG
+
+1. Remove all £\epsilon£ productions, and for every rule £X \rightarrow \alpha Y \beta£ where £Y£ can be empty, add a new rule £X \rightarrow \alpha \beta£
+2. Remove 'unit' productions £X \rightarrow Y£.
+3. For each terminal, introduce a nonterminal £Z_a \rightarrow a£, for all rules £X \rightarrow x_1 ... x_k£ where £k \geq 2£. Replace each £a£ with £Z_a£
+4. For every production £X \rightarrow Y_1 ... Y_n£ with £n \geq 3£, add new symbols £W_2, ... W_{n-1}£ and replace the rules with £X \rightarrow Y_1 W_2, W_2 \rightarrow Y_2 W_3, ..., W_{n-1} \rightarrow Y_{n-1} Y_n£.
+
+#### Example
+
+Consider the grammer
+
+%
+\begin{align*}
+S &\rightarrow TT \mid [S] \\
+T &\rightarrow \epsilon \mid (T) \\
+\end{align*}
+%
+
+1. Remove £\epsilon£ productions
+%
+\begin{align*}
+S &\rightarrow TT \mid T \mid [S] \mid [] \\
+T &\rightarrow (T) \mid () \\
+\end{align*}
+%
+2. Remove 'unit productions' £X \rightarrow Y£
+%
+\begin{align*}
+S &\rightarrow TT \mid (T) \mid () \mid [S] \mid [] \\
+T &\rightarrow (T) \mid () \\
+\end{align*}
+%
+2. Add £Z_a \rightarrow a£ productions
+%
+\begin{align*}
+S &\rightarrow TT \mid Z_( T Z_) \mid Z_( Z_) \mid Z_[ S Z_] \mid Z_[ Z_] \\
+T &\rightarrow Z_( T Z_) \mid Z_( Z_) \\
+Z_( &\rightarrow ( \\
+Z_) &\rightarrow ) \\
+Z_[ &\rightarrow [ \\
+Z_] &\rightarrow ] \\ 
+\end{align*}
+%
+3. Split long productions
+%
+\begin{align*}
+S &\rightarrow TT \mid Z_( W \mid Z_( Z_) \mid Z_[ V \mid Z_[ Z_] \\
+W &\rightarrow T Z_) \\
+V &\rightarrow S Z_] \\
+T &\rightarrow Z_( W \mid Z_( Z_) \\
+Z_( &\rightarrow ( \\
+Z_) &\rightarrow ) \\
+Z_[ &\rightarrow [ \\
+Z_] &\rightarrow ] \\ 
+\end{align*}
+%

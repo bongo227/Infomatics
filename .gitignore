@@ -1,5 +1,6 @@
 latex.cache
 site
+Thumbs.db
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

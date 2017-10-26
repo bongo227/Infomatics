@@ -229,3 +229,116 @@ Maintainability
 
 Performance
 :   Is all the work being done neccessary
+
+### Reducing long-range coupling
+
+Consider three classes `A`, `B`, `C` where `A -> B -> C`. If `A` needs some data from `C` one approach would be for `B` to return a reference to `C`. However, this means `A` and `C` are tightly coupled.
+
+A better approach is for `B` to exactly what `A` needs from `C`, thus `A` is no longer coupled to `C`.
+
+#### The Law of Demeter
+
+The Law of Demeter is a design prenciple ro reduce long range coupling. In responce to a message `m`, an object `O` should send messages only to the following objects:
+
+- `O` itself
+- objects which are arguments to message `m`
+- objects which `O` creates as part of its reaction to `m`
+- Objects which are directly accessible from `O`, that is, using values of attributes of `O`
+
+## Design patterns
+
+Design pattern
+:   A names, well understood good solution to a common problem.
+
+### Composite design pattern
+
+Consider a graphics library which supports various operations such as move, draw, change color. These operations chould apply to a single object, or a tree of connected objects.
+
+![](images/composite.png)
+
+The composite design pattern introduces another subclass `group` of the abstract class `graphics` which has a reference to all the graphics in that group. The group itself is a `graphics`, so it can be a subgroup of some other `group`.
+
+The benifits
+
+- Allows trees of any depth
+- New subclasses dont require any additionaly methods to support the tree structure.
+
+The drawbacks
+
+- May cause maintance issues (draw methods split along many files)
+    - One solution would be the visitor pattern  
+
+### Observer pattern
+
+The observer pattern has an object called the `subject` which has a collection of `observers` that it notifys automaticly when any state changes.
+
+![](images/observer.jpg)
+
+### Template method pattern
+
+The skeleton of an algorithum is defined, defferings certiain steps to subclasses. This allows modification of parts of the algorithum, without changing its original structure. Consider a sorting algothum. For the comparison step, several subclasses can be made such as `IntCompare` and `StringCompare` so that the algorithum can be used not just with numbers but other types aswell.
+
+![](images/template_method.jpg)
+
+### Elements of a pattern
+
+- Name
+- Aliases (other names for a pattern)
+- Context (where the problem arrises?)
+- Problem (why a naive approach wont work?)
+- Solution (mixture of text and models)
+- Consequences (benifits/drawbacks)
+
+## High quality code
+
+- Codeing standards
+    - Placement of braces
+    - Indenting
+- Use meaningfull names
+    - If they become out of date, refactor them
+- Avoid cryptic comments
+    - Try to make code clear instead of comments
+- Balance structual complexity vs code duplication
+    - Dont repeat yourself
+    - Avoid costly changes just to avoid writing somthing twise
+- Be clever, but no too clever
+    - Avoid deprecated, obscure or unstable language features
+    - Premature optermization is the root of all evil...
+- Remove dead code, unneeded packages, etc
+
+### Documentation
+
+Any software projects require documentation for end users. Most languages have doc tools that allow embedded documentation in the code to be transformed into a html page, or other display format.
+
+### Coding style
+
+- Declarations and local variables
+    - Limit scope of local variables
+- Conditional and loop statements
+    - Put the common case first, any exceptions after
+    - Avoid deep nesting
+- How code is split
+    - Avoid long methods
+- Defensive programming
+    - Use assertions
+    - Handle errors appropriately
+- Use suitable OO patterns
+- Divide code into packages
+    - Allow related pieces of code to be grouped
+    - Units of encapsulation
+        - Fields and methods by default are visible to packages
+    - Organize namespace
+
+### OO Features
+
+- Classes
+    - Grouping behaviour
+    - Concetual abstraction
+    - Hides state
+- Inheritance
+    - Doesnt need to know of private class members
+- Interfaces
+    - Decouple implementations from users
+
+## Version control
+

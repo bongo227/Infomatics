@@ -744,3 +744,83 @@ If £p£ is prime and £a£ is an integer not divisible by £p£ then:
 Find £7^{222} \text{ mod } 11£.
 
 £p = 11£ and £a = 7£, so by fermat's little theorem £7^{11 - 1} \equiv 7^{10} \equiv 1 \; (\text{mod } 11)£. £(7^{10})^k \equiv 1 \; (\text{mod } 11)£ for every positive integer £k£. Therefore £7^{222} = 7^{22 \times 10 + 2} = (7^{10})^{22} \times 7^2 = (7^{10})^{22} \times 49£. £(7^{10})^{22} \times 49 \equiv 1^{22} \times 49 \equiv 5 \; (\text{mod } 11)£. Hence £7^{222} \text{ mod } 11 = 5£.
+
+## Counting
+
+### Product rule
+
+If £A£ and £B£ are finite sets £|A \times B| = |A| \cdot |B|£ where £A \times B = \{(a, b) \mid a \in A \land b \in B \}£
+
+#### Example
+
+How many diffrent car license plates can be made of 3 uppercase letters and 3 digits.
+
+£26 \times 26 \times 26 \times 10 \times 10 \times 10 = 17576000£
+
+### Counting subsets
+
+A finite set £S£ has £2^{|S|}£ distinct subsets.
+
+#### Proof
+
+Theis is bijection between the bit strings of length £|S|£, since an arbitary bit string tells us what elements from set £|S|£ is in the subset. Thus by the product rule their are £2^{|S|}£ distinct subsets.
+
+### Counting functions
+
+For all finite sets £A£ and £B£, the number of distinct functuons £F: A\rightarrow B£ is £|B|^{|A|}£
+
+#### Proof
+
+Their is a bijection between between functions £f£ and strings of length £|A|£ over an alphabet £|B|£. This is because each string gives all the values of a function £f£.
+
+### Sum rule
+
+If £A£ and £B£ are disjoint then £|A| \cup |B| = |A + B|£.
+
+#### Example
+
+Suppose variables can be 1 uppercase letter or 1 uppercase letter and a number
+
+£26 + (10 \times 26) = 286£, since the sets are disjoint.
+
+### Subtraction rule
+
+For sets £A£ and £B£, £|A| \cup |B| = |A| + |B| - |A \cap B|£.
+
+#### Example
+
+How many bit strings of lenghth 8 either start with a 1 bit, or end with two 00 bits.
+
+£2^7 + 2^6 - 2^5 = 160£
+
+### The pigeonhole principle
+
+For any positive integer £k£, if £k+1£ objects, are placed in £k£ boxes,then at least one box contains two or more objects.
+
+Or more formally, if £f : A \rightarrow B£ maps finite set £A£ with £|A| = k£
+
+### Generalized pigeon hole
+
+If £N \geq 0£ objects placed in £k \geq 1£ boxes, then at least one box contains at least £\lceil{\frac{N}{k}} \rceil£.
+
+#### Example
+
+Atleast £d£ students were born in the dame month, what is the least £d£?
+
+£\lceil \frac{145}{12} \rceil = 13£.
+
+### Permutations
+
+A permutations of a set £S£ is an ordered arrangement of elements of £S£ i.e. a sequence of every element in £S£ once.
+
+In otherwords their is a bijection £\pi : S \rightarrow S£ where we can uniquly associte each with a permutation of £S£
+
+#### r-Permutation
+
+An ordered sequence of £r£ distinct elements of £s£
+
+#### Example
+
+How many permutations of the letters `ABCDEFGH` contain `ABC` as a consecutive substring.
+
+`ABCDEFGH` = `ABC,D,E,F,G,H` = £P(6, 6) = 6! = 720£

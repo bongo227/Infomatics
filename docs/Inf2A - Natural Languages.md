@@ -127,3 +127,28 @@ To convert from intermediate form to surface form, we apply a number of _orthogr
 - _E-deletion:_ Delete `e` before a suffix beginning with `e` or `i` e.g. love £\rightarrow£ loving.
 - _Constant doubling:_ Single consonants `b`, `s`, `g`, `k`, `l`, `m`, `n`, `p`, `r`, `s`, `t`, `v` are doubled before suffix `ed` or `ing` e.g. beg £\rightarrow£ begging 
 
+## Parts-of-speech
+
+Parts-of-speech is the process of tagging words in a sentence. Words are split into classes with the same distribution, such as:
+
+- Crocodile
+- Pencil
+- Mistake
+
+These (singular, countable) nouns can appear in the same grammatical contexts such as:
+
+- Jim saw the crocodile
+- Jim saw the penci
+- Jim saw the mistake
+
+### Classifying words
+
+Criteria for classifying words:
+
+- __Distributional__ criteria - Where can the words occor?
+- __Morphological__ criteria - What form doest the word have? What affixes doest it have?
+- __Notinal__ criteria - What consept doest the word refer to, e.g. nouns refer to people, places and things.
+
+Classes of words are split into open and clossed:
+
+- __Open classes__ are large, and fluid, and (often) stable under translation, e.g. nouns, verbs, adjectives adverbs.

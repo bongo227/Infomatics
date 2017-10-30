@@ -223,3 +223,120 @@ Sequential logic
 :   Output depends of current input and some previous inputs (requires memory)
 
 ### Combinational logic circuits
+
+| Name | Description |
+| --- | --- |
+| Inverter / NOT gate | Inverts the input signal |
+| OR gate | Outputs 1, if atleast one input is 1 |
+| AND gate | Outputs 1, if both inputs _are_ 1 |
+| NAND gate | Outputs 1, if bot inputs _are not_ 1 |
+
+Functional completeness
+:   Set of gates that can express _any_ boolean function.
+
+Functional-complete sets:
+
+- AND + OR + NOT
+- NAND
+- NOR
+
+### Multiplexer 
+
+Multiplexer
+:   Selects one of multiple inputs
+
+![](images/multiplexer.png)
+
+To convert this curcuit to logical gates, we look at its truth table
+
+%
+\begin{tabular}{c|c|c|c}
+$c$ & $i_0$ & $i_1$ & $z$ \\ \hline
+0 & 0 & 0 & 0 \\
+0 & 0 & 1 & 0 \\
+0 & 1 & 0 & 1 \\
+0 & 1 & 1 & 1 \\
+1 & 0 & 0 & 0 \\
+1 & 0 & 1 & 1 \\
+1 & 1 & 0 & 0 \\
+1 & 1 & 1 & 1 \\
+\end{tabular}
+%
+
+Next we look at all the cases where the output is £1£. And all the inputs and or each of these cases to get the following:
+
+%
+\begin{align*}
+z &= \bar{c} . i_0 . \bar{i_1} + \bar{c} . i_0 . i_1 + c . \bar{i_0} . i_1 + c . i_0 . i_1 \\
+&= \bar{c} . i_0 . (\bar{i_1} + i_1) + c . i_1 . (i_0 + \bar{i_0}) \\
+&= \bar{c} . i_0 + c . i_1 \\
+\end{align*}
+%
+
+This is the sum of products form.
+
+### Arithmetic
+
+If we used sum of products form for an adder (adds two binary numbers together), their would be way to many curcuits to reason about with 32/64 inputs. Instead we sequence a smaller curcuit.
+
+Full / 1-bit adder takes in 2 digits and a carry, produces result digit and carry out. We then use multiple copys to create a 32-bit adder (ripple carry adder):
+
+![](images/adder.png)
+
+### Propagation delay
+
+Propagation delay
+:   Time delay between input signal change and output signal change.
+
+The propagation delay depends on:
+
+- Technology (transistor parameters, wire capacitance, etc).
+- Delay through gate
+- Number of gates
+
+## Sequential logic
+
+Sequential logic
+:   Output depends on current and past input(s), i.e. the curcuit has memory.
+
+### SR Latch
+
+The SR latch is the simplest form of memory.
+
+![](images/srlatch.png)
+
+It has the following truth table
+
+%
+\begin{tabular}{c|c|c}
+$S$ & $R$ & $Q_i$ \\ \hline
+0 & 0 & $Q_{i-1}$ \\
+0 & 1 & 0 \\
+1 & 0 & 1 \\
+1 & 1 & invalid \\
+\end{tabular}
+%
+
+### Clock
+
+We know the because of propagation delay, curcuits with lots of gates take some time to output. Outputs may also fluctute if certain paths are shorted than others. The clock forces all state changes to happen when its 1, and guarentees the state is correct while it is 0, thus we avoid any occilation effecting calculations.
+
+### Level-triggered D Latch
+
+A latch which only only changes when the clock is 1.
+
+![](images/dlatch.png)
+
+For example £\alpha£ changes before £1£, but £Q£ wont change until after £1£.
+
+### Edge-triggered D flip-flop
+
+We can do better. Half a clock cycle is still alot of time, thus an edge-triggered D flip-flop will only change when the input changes on a _positive clock edge_.
+
+![](images/edlatch.png)
+
+For example £\Gamma£ doesnt cause a change since it happens after the clock edge.
+
+### General sequential logic curcuit
+
+Now if we tie multiple D flip-flops together (with a common clock) we get a register. Combine this with some combinational logic (whos state is saved by the registers to be used next cycle) and we arrive at a general sequential logic circuit.

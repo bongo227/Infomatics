@@ -809,18 +809,330 @@ Atleast £d£ students were born in the dame month, what is the least £d£?
 
 £\lceil \frac{145}{12} \rceil = 13£.
 
-### Permutations
+## Permutations
 
 A permutations of a set £S£ is an ordered arrangement of elements of £S£ i.e. a sequence of every element in £S£ once.
 
-In otherwords their is a bijection £\pi : S \rightarrow S£ where we can uniquly associte each with a permutation of £S£
+In otherwords their is a bijection £\pi : S \rightarrow S£ which matches some element in £S£ with another element in £S£, creating a unique permutation, since it is one-to-one. So a set £S = \{s_1, ..., s_m\}£ has a permutation £\pi (s_1), ..., \pi (s_m)£.
 
-#### r-Permutation
+### r-Permutation
 
-An ordered sequence of £r£ distinct elements of £s£
+An ordered sequence of £r£ distinct elements of £S£, for example a 2-permutation of set £\{1, 2, 3\}£ would be £\{3, 1\}£ or £\{1, 2\}£ etc.
 
-#### Example
+In otherwords their is a bijection £f : \{1, ..., r\} \rightarrow S£ which orders a subset of the elements in £S£, creating a unique r-permutation. So an r-permutation would be £f (1), f(2), ..., f(r)£.
+
+### Number of r-Permutations
+The number of r-permutations will be:
+
+%
+$$
+P(n, r) = n \cdot (n - 1) \cdot ... \cdot (n - r + 1)
+$$
+%
+
+Since their are £n£ choises of what can go in the first position, and £n-1£ choises for the second, and so on. This simplifys to:
+
+%
+$$
+P(n, r) = \frac{n!}{(n - r)!}
+$$
+%
+
+For the number of permutations we get:
+
+%
+$$
+P(n, n) = \frac{n!}{(n - n)!} = n!
+$$
+%
+
+### Example
 
 How many permutations of the letters `ABCDEFGH` contain `ABC` as a consecutive substring.
 
 `ABCDEFGH` = `ABC,D,E,F,G,H` = £P(6, 6) = 6! = 720£
+
+### Stirling's approximation formula
+
+%
+$$
+n! \approx \sqrt{2 \pi n} \cdot (\frac{n}{e})^n
+$$
+%
+
+We can show that its and approximation, by showing that it grows at the same rate as £n!£:
+
+%
+$$
+lim_{n \rightarrow \infty} {\frac{n!}{\sqrt{2 \pi n} \cdot (\frac{n}{e})^n}} = 1
+$$
+%
+
+Its often usefull to have lower and upper bounds:
+
+%
+$$
+\sqrt{2 \pi n} \cdot (\frac{n}{e})^n \cdot e^{\frac{1}{12n+1}} \leq n! \leq \sqrt{2 \pi n} \cdot (\frac{n}{e})^n \cdot e^{\frac{1}{12n}}
+$$
+%
+
+## Combination
+
+An unordered collection of elemenets of £S£.
+
+The number of combinations will be the number of permutations divided by the number of orderings which is £P(r, r) = r!£.
+
+%
+$$
+C(n, r) = \binom{n}{r} = \frac{P(n, r)}{P(r, r)} = \frac{n!}{r! \cdot (n - r)!}
+$$
+%
+
+### Aproximations
+
+From Stirlings approximation formular, we can derive the following bounds:
+
+%
+$$\left( \frac{n}{r} \right)^r \leq \binom{n}{r} \leq \left( \frac{n \cdot e}{r} \right)^r$$
+$$\binom{2n}{n} \approx \frac{2^{2n}}{\sqrt{\pi n}}$$
+$$\frac{2^{2n}}{2n + 1} \leq \binom{n}{r} \leq 2^{2n}$$
+%
+
+### Example
+
+How many diffrent 5 card poker hands can be dealt from 52 cards.
+
+%
+$$
+\binom{52}{5} = \frac{52!}{5! \times 47!} = 2598960
+$$
+%
+
+### Identity
+
+%
+$$
+\binom{n}{r} = \binom{n}{n-r}
+$$
+%
+
+Proof:
+
+%
+$$
+\binom{n}{r} = \frac{n!}{r! \cdot (n - r)!} = \frac{n!}{(n - r)! \cdot (n - (n - r))!} = \binom{n}{n-r}
+$$
+%
+
+### Binomial coeffiecients
+
+Consider:
+
+%
+$$
+(x + y)^n = (x + y) \cdot (x + y) \cdot ... \cdot (x + y)
+$$
+%
+
+By exanding the terms we can write it as a sum-of-monomials
+
+%
+$$
+(x + y)^n = x^n + x^{n-y} \cdot y + ... + y^n = \sum_{j=0}^n{c_j x^{n-j} y^j}
+$$
+%
+
+were £c_j£ is the binomial coeffiects
+
+%
+$$
+(x + y)^n = \sum_{j=0}^n{ \binom{n}{j} x^{n-j} y^j}
+$$
+%
+
+### Pascal's Identity
+
+For all integers £n \geq 0£, and all integers £r£, £0 \leq r \leq n+1£:
+
+%
+$$
+\binom{n+1}{r} = \binom{n}{r-1} + \binom{n}{r}
+$$
+%
+
+Proof:
+
+Consider the subset £S = \{s_0, s_1, s_2, ... s_n \}£. Consider the subset £A£ where £|A| = r£. Their are two cases
+
+- £s_0 \in A£
+- £s_0 \not\in A£
+
+Their are:
+
+- £\binom{n}{r-1}£ of the first kind, since £s_0£ was already "choosen" their are £r-1£ left to choose out of £n£ (not £n+1£ options).
+- £\binom{n}{r}£ of the second kind, since no elements have been "choosen" their are £r£ left to choose out of £n£ (not £n+1£ options).
+
+Thus it follows that:
+%
+$$
+\binom{n+1}{r} = \binom{n}{r-1} + \binom{n}{r}
+$$
+%
+
+### Vandermonde's identity
+
+For £m, n, r \geq m£ and £r \leq n£:
+
+%
+$$
+\binom{m+n}{r} = \sum_{k=0}^r{\binom{m}{r-k} \binom{n}{k}}
+$$
+%
+
+Consider two disjoint subsets £A£ and £B£, with £|A| = m£ and £|B| = n£, thus £|A \cup B| = m + n£. Chosing r elements from £A \cup B£, we get the following cases:
+
+- £r£ elements from £A£, £0£ elements from £B£
+- £r-1£ element from £A£, £1£ elements from £B£
+- ...
+- £0£ elements from £A£, £r£ elements from £B£
+
+So their is £\binom{m}{r-k} \binom{n}{k}£ of kind k. So the sum of all cases is:
+
+%
+$$
+\binom{m+n}{r} = \sum_{k=0}^r{\binom{m}{r-k} \binom{n}{k}}
+$$
+%
+
+### Combinations with repetition
+
+A multi-set is an unordered collection of elements with possible repetition, were the size of a multi-set is the number of elements (including repetition). For example consider the multi-sets: £[R, R, B]£ and £[R, B, R]£ by definition £[R, R, B] = [R, B, R]£.
+
+For all integers £n, r \geq 1£, the number of r-combinations with repetitions, from a set £S£ of size £n£ is:
+
+%
+$$
+\binom{n+r-1}{r} = \binom{n+r-1}{n-1}
+$$
+%
+
+We can represent each r-Combination with repetition as a string of length £n + r - 1£ with £n - 1£ bars and £r£ stars. For example for the set £S = \{ R, G, B, Y \}£, then we can map multi-sets to strings.
+
+- £[R, R, Y, Y]£ is `**|||**`
+- £[R, G, G, G, B]£ is `*|***|*|`
+- £[R, Y, Y]£ is `*|||**`
+
+Thus, the number of r-Combinations with repetition is equal to the number of strings of length £n + r - 1£ with £n - 1£ bars and £r£ stars which is:
+
+%
+$$
+\binom{n+r-1}{r} = \binom{n+r-1}{n-1}
+$$
+%
+
+#### Example
+
+How many solutions to £x_1 + x_2 + x_3 = 11£ are their.
+
+This is equivilent to 11-combinations with repetion, where the set size is 3. Thus:
+
+%
+$$
+\binom{11 + 3 - 1}{11} = \binom{13}{11} = \binom{13}{2} = \frac{13 \cdot 12}{2 \cdot 1} = 78
+$$
+%
+
+## Multinomial coefficients
+
+For integers £n, n_1, n_2, ..., n_k \geq 0£ such that £n = n_1 + n_2 + ... + n_k£, let:
+
+%
+$$
+\binom{n}{n_1, n_2, ... n_k} = \frac{n!}{n_1! n_2! ... n_k!}
+$$
+%
+
+For all £n \geq 0£, and all £k \geq 1£:
+
+%
+$$
+(x_1 + x_2 + ... + x_k)^n = \sum_{0 \leq n_1, n_2, ..., n_k \leq n \text{ where } n_1 + n_2 + ... + n_k = n}{ \binom{n}{n_1, n_2, ... n_k} x_1^{n_1} x_2^{n_2} ... x_k^{n_k} }
+$$
+%
+
+Note the binomial coefficent is the special case were £k = 2£
+
+### Example
+
+How many diffrent strings can be made from reordering the letters "SUCCESS".
+
+%
+$$
+\binom{7}{3,1,2,1} = \frac{7!}{3! \cdot 1! \cdot 2! \cdot 1!} = \frac{5040}{12} = 420
+$$
+%
+
+## Graphs
+
+Graph
+:   A non-empty set of vertices (or nodes) and a set of edges that connect (pairs of) nodes
+
+Undirected graph
+:   - Their is at most one edge between distinct nodes
+- No self loops
+- Edges have no direction
+
+Directed graphs
+:   - At most one directed edge from one not to another (so their can be 2 edges, one back and one forward)
+- No self loops
+- Only directed edges
+
+### Formal defintion
+
+A directed graph £G = (V, E)£ consists of a non-empty set £V£ of vertices and a set £E \subseteq V \times V£ of directed edges. Each edge £(u, v) \in E£ has a start vertex £u£ and an end vertex £v£. 
+
+A undirected graph £G = (V, E)£ consits of a non-empty set £V£ of vertices and a set £E \subseteq [V]^2£ of undirected edges, where £\forall \{u, v\} \in E \mid u \ne v£. Here we use £[V]^k£ to denote the £k£-element subsets of £V£.
+
+### Degree and neighborhood
+
+Degree
+:   The number of edges incident with it, denoted by £deg(v)£.
+
+Neighborhood
+:   Set of vertices adjactent to £v£ denoted by £N(v)£.
+
+### Handshanking theorem
+
+If £G = (V, E)£ is an undirected graph with £m£ edges then:
+
+%
+$$
+2m = \sum_{v \in V}{deg(v)}
+$$
+%
+
+Proof: Every edge contributes to the sum of the degrees twice since their it connects a pair of nodes.
+
+### Even number of odd degree vertices
+
+Their is always an even number of odd degree vertices.
+
+Proof:
+
+First we use the handshaking lemma, and split the sum inot £V_1£ (odd degree vertices) and £V_2£ (even degree vertices).
+
+%
+$$
+2m = \sum_{v \in V_1}{deg(v)} + \sum_{v \in V_2}{deg(v)}
+$$
+%
+
+Next we subtract the sum of even vertices from both sides.
+
+%
+$$
+2m - \sum_{v \in V_2}{deg(v)} = \sum_{v \in V_1}{deg(v)} 
+$$
+%
+
+Now we notice the lhs is even, since £2m£ is even and the sum of even numbers is even. If the lhs is even the rhs must also be even, thus the sum of odd degree vertices is even.

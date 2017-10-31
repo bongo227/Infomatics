@@ -295,3 +295,60 @@ V & 0.06 & 0.0288 & 0.002304 \\
 The max of the last column is `fail/N`, `fail/N` came from `talks/V` which came from `deal/N`. Thus the highest probable sequence is `deal/N talks/V fail/N`.
 
 ## Parsing natrual language
+
+Constiuents
+:	Groups of words which stand on their own.
+
+For example,`Kim [read a book], [gave it to Sandy], and [left].`
+
+### Head and Phrases
+
+The head of the phrase is the most important word in the pharse, for example `read` in `read a book`.
+
+Their are diffrent types of phrase:
+- Noun phrase
+- Adjective phrase
+- Propositional phrase
+- ...
+
+Diffrent languages have _heads_ in diffrent places, for example Japanese is _head-final_ and Irish is _head-intial_.
+
+### Desirable properies of a grammer
+
+- A _finitite_ specification of strings of the language (rather than a list of sentences).
+- Sould be _reavealing_, in allowing strings to be associated with meaning (semantics) in a systematic way.
+
+- CFG's provide a good approximation
+- Some NL features require context sensative
+
+### Grammer for english
+
+Grammer rules
+
+```
+S  -> NP VP
+NP -> Det N
+NP -> Det N PP
+NP -> Pro
+VP -> V NP PP
+VP -> V NP
+VP -> V
+PP -> Prep NP
+```
+
+Lexical rues
+
+```
+Det -> a  | the | her
+N -> man | park | duck | telescope
+Pro -> you
+V -> saw
+Prep -> 
+```
+
+### Structual ambiguity
+
+### Parsing algorithum
+
+- __Recursive desent__ (top-down). Simple, but innefficent.
+- __Shift-reduce__ 

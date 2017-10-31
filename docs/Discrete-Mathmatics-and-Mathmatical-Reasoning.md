@@ -1136,3 +1136,65 @@ $$
 %
 
 Now we notice the lhs is even, since £2m£ is even and the sum of even numbers is even. If the lhs is even the rhs must also be even, thus the sum of odd degree vertices is even.
+
+### Directed graphs
+
+in-degree
+:   Number of edges comming into £v£, denoted by £deg-(v)£.
+
+out-degree
+:   Number of edges comming out of £v£, denoted by £deg+(v)£.
+
+### Special graphs
+
+Complete graph
+:   Denoted by £k_n£, a simple graph that contains one edge between each pair of distinct vertices.
+
+Cycle
+:   todo
+
+n-Cubes
+:   An n-dimensional hypercube, or n-cube, is a graph with £2^n£ vertices representing all bit strings of lenth £n£, where their is an edge between two vertices iff they differ in exactly one bit position.
+
+Bipartite graphs
+:   A graph where it is possible to split vertices into two sets where all the edges go from one set to the other. An equivalent definition is that is is possible to color the vertices either red or blue so that no two adjacent vertices are the same color.
+
+Complete bipartite graph
+:   A bitite graph, dentoted by £K_{m, n}£ where their is £m£ vertices in one partition and £n£ veritces in the other partition, with every edge between the sets connected by an edge.
+
+Subgraph
+:   A subgraph of a graph £G = (V, E)£ is a graph £(W, F)£ where £W \subseteq V£ and £F \subset E£.
+
+Proper subgraph
+:   A subgraph which is not equal to the graph.
+
+Induced subgraph
+:   Let £G = (V, E)£ be a graph. The subgraph induced by a subset £W£ of the vertex set £V£ is the graph £H = (W, F)£ whos edge set £F£ contains an edge in £E£ iff both endpoints are in £W£.
+
+### Bipartite grapgs matching
+
+Bipartite graphs can be used to match elements in two sets, such as job assignments.
+
+Matching
+:   A subset of edges of graph £G£ such thet does not exsit two distinct edges in incident on the same vertex.
+
+Maximum matching
+:   A graph £G£ is a matching in £G£ iwth the maximum possible edges.
+
+#### Halls marriage theorem
+
+For a bipartite graph £G =(V, E)£ with a bipartition £(V_1, V_2)£, there exsists a matching £M \subseteq E£ that covers £V_1£ iff for all £S \subseteq V_1£, £|S| \leq |N(S)|£.
+
+Proof:
+
+For £G = (V, E)£ with £A \subseteq V£, let £N_G(A)£ denote the neignbors of £A£ in £G£. 
+
+First "only if" direction:
+
+- Supose there is a matching £M£ in £G£ that covers £V_1£
+- We show that £\forall S \subseteq V_1, |S| \leq |N_G(S)|£.
+- Suppose that there is a subset £S \subseteq V_1£ such that £|S| > |N_G(S)|£.
+- Their is no matching £M£ that could cover by the pigeon hall theorem
+
+"if" direction:
+

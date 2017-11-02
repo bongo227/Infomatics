@@ -1198,3 +1198,42 @@ First "only if" direction:
 
 "if" direction:
 
+- Supose £\forall S \subseteq V_1, |S|\leq |N_G(S)|£.
+- We can prove a matching £M£ exsists which covers £V_1£, by induction of size £|V_1|£.
+    - Base case: £|V_1| = 1£. Since £|V_1| \leq |N_G(V_1)|£, their must be an edge covering the vertex £u£ in £V_1 = \{u\}£
+    - Inductive step: By the inductive hypothasis, for a bipartite graph £G'£ with £|V_1'| = j \leq k£. Suppose £|V_1| = k + 1£ 
+        - Case 1:
+            - For every nonempty strict subset £S \subset V_1£, we have £|S| \leq |N_G(S)| - 1£. 
+            - Take any £\{u, e\} \in E£ with £u \in V_1£.
+            - Remove £u£ and £v£ and edges indicent on them from £G£, resulting in a bipartite graph £G' = (V_1 - \{u\}, V_2 - \{v\})£.
+            - By the inductive hyptothesis, there must exist a matching £M'£ in £G'£ that covers £V_1 - \{u\}£ since for every subset £S \subseteq V_1 - \{u\}£, £N_G(S) \subseteq N_{G'}(S) \cup \{V\}£.
+            - Thus £|N_{G'}(S)| \geq |N_{G}(S)| - 1 \geq |S|£
+            - Thus their is a matching £M = M' \cup \{\{u, v\}\}£
+        - Case 2:
+            - For every nonempty strict subset £S \subset V_1£, we have £|S| = |N_G(S)|£. 
+            - Any matching that covers £V_1£, must match £S£ to £N_G(S)£
+            - By the induction hypothesis, their is a matching £M'£ covering £S£ on the bipartite subgraph £G'£ of £G£ induced by £S \cup N_G(S)£
+            - Furthemore the graph £G''£ of £G£ induced by £(V_1 - S) \cup (V_2 - N_G(S))£ also satisfies the condition and containts a matching £M''£ that covers £(V_1 - S)£ since £A \subseteq V_1 - S£ has £|A| > |N_{G''}(A)|£
+            - This implys £|A \cup S| > |N_G(A \cup S)|£, which violates the assumption about £G£.
+            - Letting £M  = M' \cup M''£, £M£ defines a matching in £G£ that covers £V_1£.
+
+#### Perfect matching
+
+A bipartite graph £G = (V, E)£ with bipartition £(V_1, V_2)£ has a perfect matching if and only if £|V_1| = |V_2|£ and £\forall S \subseteq V_1£, £|S| \leq |N_G(S)|£.
+
+### Representing graphs
+
+Adjeacency list
+:   Specifying the vertices that are adjacent to each vertex. For directed graphs we list the outgoing vertex
+
+Adjaceny matrices
+:   A boolean matrix the rows and columns correspond to the vertexs in the graph. If their is an edge between them, that cell is true.
+
+- Adjeacy list are better for sparce graphs since it uses less memory, adjacency matrixs use less memory for dence graph.
+- Adjaceny matrices for multigraphs can use numbers instead to denote the number of connections between a pair
+
+### Isomorphism of Graphs
+
+Two (undirected) graphs £G_1 = (V_1, E_1)£ and £G_2 = (V_2, E_2)£ are _isomorphic_ if their is a bijection £f: V_1 \rightarrow V_1£, with the propery for all vertices £a, b \in V_1 \;\; \{a, b\} \in E_1 \leftrightarrow {f(a), f(b)} \in E_2£ i.e. the graphs are the same.
+
+Their is no known _polynomial time_ algorithum for finding isomorphism, instead we try to find an invarient between the graphs.

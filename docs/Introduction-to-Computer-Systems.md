@@ -340,3 +340,52 @@ For example £\Gamma£ doesnt cause a change since it happens after the clock ed
 ### General sequential logic curcuit
 
 Now if we tie multiple D flip-flops together (with a common clock) we get a register. Combine this with some combinational logic (whos state is saved by the registers to be used next cycle) and we arrive at a general sequential logic circuit.
+
+### Hardware FSM
+
+We can use FSM to derive the seqential logic curcuit.
+
+## Processor Design - Single Cycle
+
+Datapath
+:   Performs the data operations as controlled by the instructions
+
+Control
+:   Controls the datapath, memory and I/O as controlled by the instructions
+
+### Main functions
+
+- __Fetch__ instructions from instruction memory
+- Read the register operands
+- Use the ALU for computation
+    - Arithmetic
+    - Memory adress
+    - Branch target
+- Access data memory for load/store
+- Store the result of the computation/data into the destination register
+- Update the program counter (PC)
+
+### R-Format instructions
+
+1. Read two register operands
+2. Perform the arthemetic/logical operation
+3. Write register result
+
+### Load/Store instructions
+
+1. Read register operands
+2. Calculare adress using 16-bit offset
+    - Use ALU with sign-extend
+3. Read (for load) or write (for store) the memory.
+4. (Load only) Update destination register
+
+### Branch instructions
+
+1. Read register operands
+2. Compare operands
+    - Use ALC, subtact and check Zero output
+3. Calculate target adress
+    - Sign-extend the immediate
+    - Shift left 2 places (word align)
+    - Add to PC + 4
+    

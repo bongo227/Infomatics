@@ -348,7 +348,66 @@ Prep ->
 
 ### Structual ambiguity
 
-### Parsing algorithum
+### Parsing algorithums
 
 - __Recursive desent__ (top-down). Simple, but innefficent.
-- __Shift-reduce__ 
+- __Shift-reduce__ (bottom up).
+- __Cocke-Younger-Kasami algorithm__ (bottom up). Works for
+any CFG with reasonable efficiency.
+- __Earley algorithm__ (top down). Chart parsing enhanced
+with prediction.
+
+### Recursive desent
+
+### Shift-reduce
+
+### CYK algorithm
+
+By restructuring grammer to remove left-recursion we may make it less _revealing_. For example:
+
+- John’s sister
+- John’s mother’s sister
+- John’s mother’s uncle’s sister
+- John’s mother’s uncle’s sister’s niece
+
+#### Number of parse trees
+
+Let £C(n)£ be the number of binary trees over a sentence of length £n£. The root of this tree has two subtrees: one over £k£ words £(1 \leq k < n)£ and one over £n - k£. Hence for all £k£ we can combine any subtree over £k£ words with any subtree over £n - k£ words.
+
+%
+$$
+C(n) = \sum_{k=1}^{n-1}{C(k) \times C(n-k)}
+C(n) = \frac{(2n)!}{(n+1)!n!}
+$$
+%
+
+#### Algorithum
+
+General algorithum:
+
+```
+function CKY-Parse(words, grammar) returns table for
+	# Loop over the columns
+	j ← from 1 to Length(words) do
+		# Fill the bottom cell
+		table[j − 1, j] ← {A | A → words[j] ∈ grammar}
+		# Fill cells i, j
+		for i ← from j − 2 downto 0 do
+			for k ← i + 1 to j − 1 do
+				# Check the grammer for rules that link [i, k] with [k, j]. 
+				# For every rule store it in [i, j].
+				table[i, j] ← table[i, j] ∪ 
+					{A | A → BC ∈ grammar, B ∈ table[i, k], C ∈ table[k, j]}
+```
+
+#### Succint representation of CKY
+
+If we have a boolean £Chart£ such that £Chart[A, i, j]£ is true if their is a subphrase that domminates i through j words.
+
+%
+$$
+Chart[A, i, j] = \bigvee^{j-1}_{k=i+1} \bigvee_{A \rightarrow B C} Chart[B, i, k] \land Chart[C, k, j]
+$$
+%
+
+Seed for £i + 1 = j£.

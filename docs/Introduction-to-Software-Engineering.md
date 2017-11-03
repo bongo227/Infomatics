@@ -342,3 +342,95 @@ Any software projects require documentation for end users. Most languages have d
 
 ## Version control
 
+## Refactoring
+
+## Verification, Validation and Testing
+
+### Java Modeling language
+
+JML is a richer language for writing conditions e.g. quantifiers.
+
+- Preconditions: `//@ requires x > 0;`
+- Postconditions: `//@ ensures \result % 2 == 0`
+- Invariants: `//@ invariant name.length <= 8`
+- General assertions: `//@ assert i + j = 12;`
+
+#### Dynamic analysisi
+
+Running the program with assetions is a basic form of dynamic analysis, their are tools that can compile JML to java to test at runtime
+
+#### Static analysis
+
+Some tests can be run at compile time
+
+- Checks code oversights, e.g. did you check if the file exsists
+- Corectness of pre/post condtions of some methods
+- Concurrency bugs e.g race conditions
+
+## Deployment and Maintance
+
+- Business process: Most software requires the customer to change the way they word, has this been thought through?
+- Training: No point deploying it if the customer can use it.
+- Deployment itself: How the software is physicaly installed
+- Equipment: Is the computer systems compatible
+- Expertices: Is their the personal to marage the deployment
+- Integration with the businesses other software
+
+### Deployment
+
+- Package software
+- Make it availble (cd, usb, internet etc)
+- Turn key installers
+    - Check dependencys
+    - Install software
+    - Check lisences
+
+### Maintance
+
+- Fixing bugs and vulnerabilites (including problems in the original design).
+- Adapting to new platforms and software enviroments.
+- Supporting new features and reqirements.
+
+### Maintance challenges
+
+- Often a new team maintance software
+- Development vs maintance often seperate contracts, developers dont have insentive to make it maintanable
+- Unpopular, less skilled, involve obselete languages
+- Structure degrades
+- Compilers stops working, documentation goes unmaintained
+
+### Software evolution
+
+- Gather change requirements
+    - New features
+    - Adapting to buissness changes
+    - Bug reports
+- Evaluate, produce list of changes
+- Go through the normal development cycle
+- Issue the new release
+
+In the case of emergency, this process is often shortcurcuited.
+
+### Re-engineering
+
+Re-engineering is the process of transforming old software until its maintainable
+
+- _Source code translation_ from obsolete languages.
+- _Reverse engineering_ analyse the program to derive the code in the case were the source code has been lost.
+- _Structure improvement_, i.e. modularization, architercural refactoring.
+- _Data re-enginerring_, reformatting and cleaning up data.
+- _Adding adaptor interfaces_ to users and newer software. 
+
+## Bug Reporting
+
+Many projects use _bug tracking systems_ for both bug reports and feature requests. They provide receving, tracking, notifying and monitoring to ensure bugs and features are followed through.
+
+### Writing a bug report
+
+- Keep the report concise
+- Include tediously detailed infomation
+    - How can you reporoduce it?
+    - List everything you did in order.
+- Include full infomation about the computer system
+- Make an attempt to diagnose the problem
+

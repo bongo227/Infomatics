@@ -1237,3 +1237,51 @@ Adjaceny matrices
 Two (undirected) graphs £G_1 = (V_1, E_1)£ and £G_2 = (V_2, E_2)£ are _isomorphic_ if their is a bijection £f: V_1 \rightarrow V_1£, with the propery for all vertices £a, b \in V_1 \;\; \{a, b\} \in E_1 \leftrightarrow {f(a), f(b)} \in E_2£ i.e. the graphs are the same.
 
 Their is no known _polynomial time_ algorithum for finding isomorphism, instead we try to find an invarient between the graphs.
+
+## Paths and Connectedness
+
+Path
+:   A sequence of edges connected diffrent vertices
+
+For an undirected graph £G = (V, E)£ for path lenght £n \geq 0£, a path from £u£ to £v£ is a sequence:
+
+%
+$$
+x_0, e_1, x_1, ... x_{n-1}, e_n, x_n
+$$
+%
+
+of interleaved verices £x_j \in V£ and edges £e_i \in E£ such that £x_0 = u£ and £x_n = v£ and such that £e_i = \{x_{i-1}, x_i\} \in E£ for all £i£ to £n£.
+
+Cycle
+:   A path that starts and ends at the same vertex.
+
+Simple
+:   A path is simple if it does not contain the same edge twice.
+
+Tidy path
+:   A path were no vertex appears twice (except first and last).
+
+Connected
+:   Their is a path between every pair of distinct vertices
+
+Their is always a simple and tidy path between any pair of vertices of a connected undirected graph
+
+By the definition of connectedness, for every pair of vertives £u, v£,, their must exist a shortest oath £x_0, e_1, ...£ in £G£ such that £x_0 = u£ and £x_n = v£. Suposse this path is not tidy and £n geq 1£. // TODO: finish this
+
+Connected component
+:   A maximal connected subgraph
+
+Strongly connected
+:   For every pair of vertices, their is a direct path from one to the other and visa-versa
+
+Weakly connected
+:   For every pait of vertices, their is a path for the underlying undirected subgraph
+
+Strongly connect component
+:   Maximal strongly connected subgraph, that is not contained in a larger subgraph.
+
+Directed acyclic graph
+:   A directed graph with no circuits or loops
+
+### Eulers paths and curcuits

@@ -411,3 +411,5 @@ $$
 %
 
 Seed for £i + 1 = j£.
+
+£Chart[A, i, j]£ is true if their is a rule £A \rightarrow w_{i+1}£ where £w_{i+1}£ is the £i+1£ word in the string.

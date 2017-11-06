@@ -389,3 +389,31 @@ Control
     - Shift left 2 places (word align)
     - Add to PC + 4
     
+### Full Datapath
+
+![](images/full_datapath.png)
+
+### Control part
+
+The control component produces the signals that control the datapath by looking at the 6 bit op code.    
+
+![](images/dp_with_c.png)
+
+### ALU control
+
+ALU operations:
+
+| Type | Operation |
+| --- | --- |
+| Data transfers | Add |
+| Branches | Sub |
+| Other | Look at func field |
+
+Other operations:
+
+- `0000` - AND
+- `0001` - OR
+- `0010` - add
+- `0110` - subtract
+- `0111` - set-on-less than
+

@@ -413,3 +413,40 @@ $$
 Seed for £i + 1 = j£.
 
 £Chart[A, i, j]£ is true if their is a rule £A \rightarrow w_{i+1}£ where £w_{i+1}£ is the £i+1£ word in the string.
+
+#### Disadvantages
+
+- __Grammers not in CNF__: The CYK algorithum can work with non CNF grammers by splitting spans into all possible subspans of the RHS. The problem with this is that complexity goes up steeply, £O(n^{k+1})£ where £k£ is the maxumum length of the RHS.
+- __Unnessisary constinuents__: For the language of £(b|c)a*£ with grammer rules £X \rightarrow a£ and £Y \rightarrow a£, if we parse strings such as `caaaaa` we generate both £X£ and £Y£ constituents, however at the end only one of them is needed
+
+### Earley Parsing
+
+The key idea is as well as _completed productions_ (ones whose entire RHS have been recognized), we also record _incomplete productions_ (ones for which there may so far be only partial evidence).
+
+The table entries are represented as _dotted-rules_
+
+- £S \rightarrow \cdot VP£ [0, 0] - A £VP£ is _predicted_ at the start of the sentence
+- £NP \rightarrow Det \cdot Nominal£ [1, 2] - An £NP£ is _in progress_ seen £Det£, £Nominal£ expected
+- £VP \rightarrow V NP \cdot£ [0, 3] - A £VP£ _has been found_ starting at 0 and ending at 3
+
+### Basic algorithum
+
+1. Predict all the starts upfrount, working topdown from £S£
+2. For each word in the input
+	1. Scan in the word
+	2. Complete or extend exsisting states based on matches
+	3. Add new predictions
+3. When out of words, look at the chart for a parse
+
+#### Prediction
+#### Scanner
+#### Completer
+
+%
+\begin{tabular}{r|l|c|l}
+State & rule & start/end & reason \\ \hline
+S1 & $S \rightarrow \cdot NP VP$ & £[0, 0]£ & Pridictor \\
+S2 & $S \rightarrow \cdot Aux NP VP$ & £[0, 0]£ & Pridictor \\
+S3 & $S \rightarrow \cdot VP$ & £[0, 0]£ & Pridictor \\
+\end{tabular}
+%

@@ -429,7 +429,7 @@ The table entries are represented as _dotted-rules_
 - £NP \rightarrow Det \cdot Nominal£ [1, 2] - An £NP£ is _in progress_ seen £Det£, £Nominal£ expected
 - £VP \rightarrow V NP \cdot£ [0, 3] - A £VP£ _has been found_ starting at 0 and ending at 3
 
-### Basic algorithum
+#### Basic algorithum
 
 1. Predict all the starts upfrount, working topdown from £S£
 2. For each word in the input
@@ -442,12 +442,91 @@ The table entries are represented as _dotted-rules_
 #### Scanner
 #### Completer
 
+#### Example 
+
 %
 \begin{tabular}{r|l|c|l}
 State & rule & start/end & reason \\ \hline
-S1 & $S \rightarrow \cdot NP VP$ & $[0, 0]$ & Pridictor \\
-S2 & $S \rightarrow \cdot Aux NP VP$ & $[0, 0]$ & Pridictor \\
-S3 & $S \rightarrow \cdot VP$ & $[0, 0]$ & Pridictor \\
+S1 & $S \rightarrow \cdot NP VP$ & [0, 0] & Pridictor \\
+S2 & $S \rightarrow \cdot Aux NP VP$ & [0, 0] & Pridictor \\
+S3 & $S \rightarrow \cdot VP$ & [0, 0] & Pridictor \\
+\end{tabular}
+%
+
+## Probablistic Context-Free Grammers
+
+Why use probabilities in grammars:
+
+- __Syntatic disambiguation__. Ambigiuity is unavoidable in natural language.
+- __Coverage__. Handle production that we havent seen before.
+- __Representativeness__. Handle diffrent types of texts.
+
+CYK and Earley algorithum returns all possible parses of a sentence however some of those parses may not make sence. By introducing probability we can discard the unlikey parses in order to find the best parse.
+
+### Formal definition
+
+A PCFG £\langle N, \Sigma, R, S \rangle£ is defined as follows:
+
+- £N£ is the set of non-terminal symbols
+- £\Sigma£ is the terminals (disjoint from £N£)
+- £R£ is a set of rules of the form £A \rightarrow \beta [p]£  where £A \in N£ and £\beta \in (\sigma \cup N)*£ and £p£ is a number between 0 and 1.
+- £S£ a start symbol £S \in N£
+
+A PCFG is a CFG with a probability £[p]£ attached to it.
+
+### Disambiguation
+
+A PCFG assigns a probability to every parse tree, this is the product of all the rules that build it.
+
+%
+$$
+P(T, S) = \prod_{i=1}^n {P(A_i \rightarrow \beta_i)}
+$$
+%
+
+To find the most likey derivation we do the folllowing
+
+%
+$$
+\max_T P(T, S) = \max_T \frac{P(T, S)}{P(S)} = \max_T P(T, S)
+$$
+%
+
+Since £P(S)£ is positive and does not depend on £T£ we can ignore it.
+
+### Probabilistic CYK
+
+Instead of a 2d table with a list of non-terminals that span £i£ through £j£, we have a 3d table (with the 3rd dimension being the non-terminals) where each cell represents the probability of a non-terminal spanning £i£ through £j£.
+
+Call £Chart[A, i, j]£ the probability of the highest-probability derivation of £w_{i+1}, ..., w_j£ from £A£.
+
+%
+\begin{align*}
+Chart[A, i, i+i] &= p(A \rightarrow w_{i+1}) \\
+Chart[A, i, j] &= \max_{k : i < k < j} \max_{B, C : A \rightarrow B C \in G} \\
+& \; \; Chart[B, i, k] \times Chart[C, k, j] \times p(A \rightarrow B C)
+\end{align*}
+%
+
+For each child we pick the best children mulitplied by the probabiltity to generate those children.
+
+#### Example
+
+%
+\begin{tabular}{lrlrlrlr}
+S $\rightarrow$ NP VP & 1.0 & NP $\rightarrow$ NP N & 0.2 & N $\rightarrow$ orange & 0.3 & A $\rightarrow$ orange 1.0 \\ 
+NP $\rightarrow$ N & 0.6 & VP $\rightarrow$ V & 0.8 & N $\rightarrow$ tree & 0.5 & V $\rightarrow$ blossoms 1.0 \\
+NP $\rightarrow$ A NP & 0.2 & VP $\rightarrow$ V Adv & 0.2 & N $\rightarrow$ blossoms & 0.2 & Adv $\rightarrow$ early 1.0
+\end{tabular}
+%
+
+%
+\begin{tabular}{l|l|l|l|l}
+		   & 1 orange & 2 tree & 3 blossoms & 4 early \\ \hline
+0 orange   & \shortstack{N 0.3 \\ A 1.0 \\ NP 0.18} & \shortstack{NP 0.06} & \\ \hline
+1 tree     & & \shortstack{N 0.5 \\ NP 0.3} & \shortstack{NP 0.012 \\ S 0.24} & \\ \hline
+2 blossoms & & & \shortstack{N 0.2 \\ NP 0.12 \\ V 1.0 \\ VP 0.8} & \shortstack{VP 0.2} \\ \hline
+3 early    & & & & \shortstack{Adv 1.0} \\
 \end{tabular}
 %
 

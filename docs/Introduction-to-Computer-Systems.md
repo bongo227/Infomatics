@@ -417,3 +417,75 @@ Other operations:
 - `0110` - subtract
 - `0111` - set-on-less than
 
+## Processor Design - Multicycle processer
+
+Motivations for multicycle processors:
+
+- __Speed:__ In a single cycle processor, the clock cycle must be long enough for the most complex instruction.
+- __Cost:__ Functional units (adders e.g.) cannot be re-used during instruction execution.
+
+Basic idea:
+
+- Break up execution of instructions to multiple cycles
+- Ensure actions performed in a cycle are generic (common to many instructions)
+- Reuse datapath and control path components
+
+### Building blocks
+
+- One memory
+    - Shared between instructions and data
+    - Common interface given an indress and data to write, produces the read data.
+- Registers
+    - Read early in instruction cycle
+    - Written late
+    - No chance of read/write contention
+- One ALU
+    - All PC calculations
+    - All arithmetic
+
+### Example execution
+
+`<=` means the register "get the value of" at the end of the clock cycle.
+
+#### Fetch
+1. 
+```
+IR <= Mem[PC]1
+PC <= PC + 4
+```
+
+2. Read registers
+```
+A <= Reg[IR[25:21]] // adress the register denoted by the instruction
+B <= Reg[IR[20:16]]
+ALUOut <= PC + sgnext(IR[15:0] << 0) // compute branch offset
+```
+3. - R-type arithmetic
+```
+ALUOut <= A op B
+```
+- Imediate arithmetic
+```
+ALUOut <= A + sgnext(IR[15:0])
+```
+- Branch completion
+```
+if(A == B) PC <= ALUOut
+```
+- Jump completion
+```
+PC <= {PC[31:28], IR[25:0], 2'b00} // 4 most significant bits + jump adress + 00
+```
+
+4. Perform store
+
+### Data and control path
+
+![](images/mcp.png)
+
+- New instruction register to store currently executing instruction
+- A & B read register
+- ALU mux to control ALU inputs and operations
+- ALU out register
+- Memory data register (stores data from memory)
+

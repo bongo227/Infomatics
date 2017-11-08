@@ -445,8 +445,89 @@ The table entries are represented as _dotted-rules_
 %
 \begin{tabular}{r|l|c|l}
 State & rule & start/end & reason \\ \hline
-S1 & $S \rightarrow \cdot NP VP$ & £[0, 0]£ & Pridictor \\
-S2 & $S \rightarrow \cdot Aux NP VP$ & £[0, 0]£ & Pridictor \\
-S3 & $S \rightarrow \cdot VP$ & £[0, 0]£ & Pridictor \\
+S1 & $S \rightarrow \cdot NP VP$ & $[0, 0]$ & Pridictor \\
+S2 & $S \rightarrow \cdot Aux NP VP$ & $[0, 0]$ & Pridictor \\
+S3 & $S \rightarrow \cdot VP$ & $[0, 0]$ & Pridictor \\
 \end{tabular}
 %
+
+## Paramerter estimation and Lexicalisation for PCFG's
+
+### Estimate them from data
+
+- Number of times word £w£ occors with tag £t£ %$$
+p(w \mid t) = count(w, t) / \sum_{w'} {count(w', t)}
+$$%
+- Number of times tag £t£ appears after tag t' %$$
+p(t \mid t) = count(t', t) / \sum_{t''} {count(t', t'')}
+$$%
+
+### Parameter estimation with treebank
+
+%
+$$
+P(\alpha \rightarrow B \mid \alpha) = \frac{Count(\alpha \rightarrow \beta)}{\sum_\gamma {a \rightarrow \gamma}} = \frac{Count(\alpha \rightarrow \beta)}{Count(\alpha)}
+$$
+%
+
+```
+S1: [S [NP grass] [VP grows]]
+S2: [S [NP grass] [VP grows] [AP slowly]]
+S3: [S [NP grass] [VP grows] [AP fast]]
+S4: [S [NP bananas] [VP grow]]
+```
+
+%
+\begin{tabular}{l|l|l|c}
+r  & Rule & $\alpha$ & $P(r\mid \alpha)$ \\ \hline
+r1 & S $\rightarrow$ NP VP    & S  & 2/4 \\
+r2 & S $\rightarrow$ NP VP AP & S  & 2/4 \\
+r3 & NP $\rightarrow$ grass   & NP & 3/4 \\
+r4 & NP $\rightarrow$ bananas & NP & 1/4 \\
+r5 & VP $\rightarrow$ grows   & VP & 3/4 \\
+r6 & VP $\rightarrow$ grow    & VP & 1/4 \\
+r7 & AP $\rightarrow$ fast    & AP & 1/2 \\
+r8 & AP $\rightarrow$ slowly  & AP & 1/2 \\
+\end{tabular}
+%
+
+### Parameter estimation without treebank
+
+The inside-outside algorithum:
+
+1. Take a CFG and set all rules to have equal probability.
+2. Parse the corpus with the CFG.
+3. Adjust the probabilitys.
+4. Repreat steps 2-3 until probabilitys converge.
+
+### Independence problem
+
+### Ignoring lexical infomation
+
+For the sentences `The students dumped the sack in the bin` and `the students spotted a flaw in the plan`, `dumped` applys motion and is more likely to have a prepositional phrase than `spotted`.
+
+We can lexicalize a PCFG by annotation non-terminals with _head words_ for example:
+
+```
+VP(dumped) -> V(dumped) NP(sack) PP(in)
+VP(spotted) -> V(spotted) NP(flaw) PP(in)
+VP(dumped) -> V(dumpled) NP(sack)
+...
+```
+
+#### How many parameters are their
+
+In CNF we will have rules:
+```
+A[h] -> B[h] C[h']
+```
+
+which has £N^3 V^2£ parameters where £N£ is the non terminals and £V£ is the vocabulary size
+
+An improvement is to split rules into:
+```
+A[h] -> B[h] C
+C -> C[h]
+```
+
+which has £N^3 V + NV£, thus its linear with increase in vocabulary.

@@ -610,3 +610,104 @@ C -> C[h]
 ```
 
 which has £N^3 V + NV£, thus its linear with increase in vocabulary.
+
+## ?
+
+### Agreement
+
+- Verbs agree in person and number with their subjects
+- Tag questions agree in person, number, tence can mode with their main statement, and have the opposite polarity
+- Reflexcive pronouns follow suit in person, number and gender
+
+Agreement helps solve some ambiguity i.e "the boy who eats flies docks" -> "the boys who eat fly ducks"
+
+#### Node splitting via attributes
+
+One solution is paramatizing the CFG productions such as 
+
+```
+S -> NP[p,n,nom] VP[p,n]
+```
+
+Here we force the `NP` and `VP` to agree with each other in terms of person and tence.
+
+## Semantics
+
+Semantics
+:	The meaning of a sentence, finding the truth value within a world.
+
+Denotation
+:	Literal meaning.
+
+Compositionality
+:	The meaning of a complex expression is a function of the meaning of its parts and of the rules by which they are combined.
+
+Verifiability
+:	One must be able to use the meaning representation of a sentence to determine whether the sentence is true with respect to some given model of the world.
+
+Unambiguity
+:	A meaning representation shoub be unambigious, with one and only one interprentation.
+
+Canonical form
+:	The meaning representation for sentence with the same meaning should (ideally) both be convertible into the same canonical form, that shows their equivence.
+
+Logical inference
+:	A good meaning representation should come with a set of rules for logical infernec eor deductions.
+
+### Propositional logic
+
+A very simple system for meaning representation consisisting of _atomic sentence_ and _compound sentence_ which join atomic sentence with connectives.
+
+- We are unable to represent the internal structure of the proposition.
+- Unable to express quantifiers.
+
+### Predicate logic
+
+Sentences are build up from:
+
+- Constant and variable symbols
+	- Each constant symbol denotes one and only one entity.
+	- Not all entities have a constant that denotes them
+	- Several constant symbols may denote the same entity
+- Predicate symbols that represents properies of entitys and relatiosn that hold between them
+	- Every proedicate has a specific _arity_
+	- Denotes propertys and relations
+
+`Cats are mammals` => £\forall x \; Cat(x) \rightarrow Mammal(x)£.
+
+`I have a cat` => £\exists x \; Cat(x) \land Own(i, x)£.
+Note that £\exists x \; Cat(x) \rightarrow Own(i, x)£ is not equivalent, since if £x£ was not a cat, the statement is true.
+
+### Types
+
+- Unary predicates `<e, t>` entitys to facts
+- Binary preicates `<e, <e,t>>`
+- `<<e, t>, e>`
+
+To express these types, we use lambda expressions. e.g. £(\lambda x \; sleep(x))(Mary)£ which has the same truth value as £sleep(Mary)£.
+
+#### Example
+
+- Conside the question "Who is the CEO of microsoft"
+- A pssible interpretation is £\lambda x . CEO(x, Microsoft)£
+- We may have a large database of CEO's in the form £CEO(Nadela, Microsoft), CEO(Cook, Apple)£
+- Using the database we can test the truth value of these statements.
+
+`Sam loves kim` will transform into:
+
+![](images/samloveskim.png)
+
+### Type raising
+
+- We are given `Sam` and `kim` the semantic type e, and woamin the semantic type `<e, t>`
+- `Sam` => £\lambda P . P(Sam)£ (type raising)
+- `every woman` => £\lambda P . \forall x . woman(x) => P(x)£
+
+#### Example
+
+`Every student` becomes
+
+%
+$$(\lambda Q.\lambda P. \forall x.Q(x) \rightarrow P(x))(\lambda x.student(x))$$
+$$\lambda P. \forall x.student(x) \rightarrow P(x)$$
+%

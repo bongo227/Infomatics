@@ -1285,3 +1285,99 @@ Directed acyclic graph
 :   A directed graph with no circuits or loops
 
 ### Eulers paths and curcuits
+
+## Discrete probability
+
+Sample space
+:   All possible outcomes, denoted by £\omega£
+
+Probability distribution is a function £P : \omega \rightarrow [0, 1]£, that assigns a probability to each item in the sample space, such that £\sum_{S \in \omega} P(s) = 1£.
+
+Event
+:   A subset of the possible outcomes
+
+### Basic facts about probability of events
+
+##### Theorem
+
+Supose £E_0, E_1, E_2, ...£ are sequence of pairwise disjoint events fromt he sample space £\omega£.
+
+%$$
+P(\bigcup_i E_i) = \sum_i P(E_i)
+$$%
+
+##### Proof
+
+Follows from definitions
+
+##### Definition
+Let £P : \omega \rightarrow [0, 1]£ be a probability distribution, and let £E, F \subseteq \omega£ be two events such that £P(F) > 0£. The conditial probability of £E£ given £F£ denoted by £P(E \mid F)£ is defined by
+
+%$$
+P(E \mid F) = \frac{P(E \cap F)}{P(F)}
+$$%
+
+### Idependent events
+
+Two events are indepenent if £P(A \cap B) = P(A) P(B)£ likewise £P(A \mid B) = P(A)£.
+
+Events £E_1, ..., E_n£ are __pairwise independent__ if for every pair £i, j \in \{1, ..., n\}£, £E_i£ and £E_j£ are indepenent.
+
+Events £E_1, ..., E_n£ are __mutually independent__ if for every subset £J \in \{1, ..., n\}£, £P(\bigcap_{j\in J}) = \mul_{j_J}P(E_j)£. 
+
+### Bernoulli trails
+
+A probalistic experiment with two outcomes £p£ and £q = 1 - p£. (Typically) diffrent trails are mutaully indepented (such as coin flips).
+
+### Binomial distribution
+
+The probability of £k£ successes in £n£ indepented bernoulli trials is
+
+%
+$$
+\binom{n}{k} p^k q^{n-k}
+$$
+%
+
+The binomial distribution is denoted by £b(k; n, p)£.
+
+### Random variable
+
+A function that assigns a real value to each outcome in a sample space.
+
+We write £P(X = r)£ as short hand £P(\{ s \in \omega \mid X(s) = r \})£.
+
+#### Example
+
+Given a biased coin that lands heads with probabilty £p£. What is the probabilty we flipped the coin £k£ times to get the first head.
+
+£T^{k-1} H = (1 - p)^{k-1} \times p£
+
+### Bayes theorem
+
+Let £A£ and £B£ be two events, from some sameple splace £\phi£ and £P : \phi \rightarrow [0, 1]£ a probability distribution of £\phi£, such that £0 < P(A) < 1£ and £P(B) > 0£.
+
+%$$
+P(A \mid B) = \dfrac{P(B \mid A) P(A)}{P(B \mid A) P(A) + P(B \mid \bar{A}) P(\bar{A})}
+$$%
+
+### Genralized bayes theorem
+
+Let £E, F_1, F_2, ..., F_n£ be events that partition the sample space £\phi£. Suppose £P(E) > 0£ and £P(F_j) > 0£ for all £j£
+%
+$$
+P(F_j, E) = \dfrac{P(E \mid F_j) P(F_j)}{\sum_{i=0}^n P(E \mid F_i)P(F_i) }
+$$
+%
+
+### Expectation
+
+Expected value
+:   The value of the random variable weighted by the probability of that outcome
+
+%
+\begin{align*}
+E(X) &= \sum_{S \in \phi} P(s) X(s) \\
+     &= \sum_{r \in range(X)} P(X = r) \cdot r
+\end{align*}
+%

@@ -489,3 +489,64 @@ PC <= {PC[31:28], IR[25:0], 2'b00} // 4 most significant bits + jump adress + 00
 - ALU out register
 - Memory data register (stores data from memory)
 
+## Memory
+
+Temporal locality
+:   Recently accessed memeory location is likely to be accessed again in the near future.
+
+Spatial locatility
+:   Memory location close to recently accessed location are likely to be accessed in the near future.
+
+### Memory hierachy
+
+- Temporal locality
+    - If access data from slower memeory, move to faster memory
+    - If data is faster memeory unused recently, move it to slower memory
+
+- Spartial locality
+    - If need to move a word from slower to faster memory, move adjacten words
+    - Gives rise to blocks and pages, units of storage for contiguous memory.
+
+### Terminology
+
+Block (or line)
+:   Unit of data stored in the cache
+
+Hit
+:   Data is found in the cache
+
+Miss
+:   Data not found
+
+Hit rate
+:   Fraction of accesses that are hits at any given level of hierarchy
+
+Hit time
+:   Time required to access a level of the hierarchy, including time to determin wherer acess hit or miss
+
+Miss penalty
+:   Extra time required to fetch ablock in the next level down
+
+### Cache
+
+Tag
+:   A word indicating the address of the main memroy block it holds (a subsection of the adress)
+
+Valid bit
+:   Indicates the block is in use
+
+### Fully-associative cache
+
+The tag is all of the bits an the adress except from the block offset. The byte offset is comprised of the lowest bits that denote the requested byte with in the cache block.
+
+### Cache replacement
+
+Least recently used (LRU)
+:   Evict the cache block that hasnt been accessed in the longest time
+
+First in first out (FIFO)
+:   Replace in the same order as filled
+
+### Direct-mapped cache
+
+A data item can be stored in one location only in the cache. The adress is split into the tag, index and byte offset. The index tells us where the memory is found/stored. If the tag in that position is the same, then their is a hit, otherwise its a miss.
